@@ -19,7 +19,7 @@ function DoctorLogin() {
               <img src={loginImage} alt="Healh Care" />
             </div>
             <div className="rhs">
-              <h2>Welcome Back Doctor!</h2>
+              <h2>Welcome Back Test!</h2>
               <p>Login To Your Account</p>
               <form>
                 <input type="text" placeholder="Email" />
