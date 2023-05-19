@@ -10,6 +10,10 @@ function PatientLogin() {
     window.scrollTo(0, 0);
   }, []);
 
+  async function submitHandler(e) {
+    e.preventDefault();
+  }
+
   return (
     <>
       <div className="log-in">
@@ -24,16 +28,18 @@ function PatientLogin() {
               <form>
                 <input type="text" placeholder="Email" />
                 <input type="text" placeholder="Password" />
-                <input type="submit" value="Log In" className="clickable"/>
+                <input type="submit" value="Log In" className="clickable" onClick={submitHandler} />
               </form>
-              <Link className="clickable" to="/patient-reg">Create Account</Link>
-              <a >Forgot Password?</a>
+              <Link className="clickable" to="/patient-reg/patient-reg1">
+                Create Account
+              </Link>
+              <a>Forgot Password?</a>
             </div>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default PatientLogin
+export default PatientLogin;
