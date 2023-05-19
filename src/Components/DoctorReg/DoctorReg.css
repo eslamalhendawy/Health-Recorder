@@ -1,0 +1,127 @@
+.reg {
+  /* height: 100vh; */
+  background-color: var(--main-color);
+}
+
+.reg .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reg .container .regis-card {
+  margin: 60px 0;
+  box-shadow: rgba(14, 30, 37, 0.274) 0px 2px 7px 6px,
+    rgba(14, 30, 37, 0.274) 0px 2px 16px 0px;
+  border-radius: 30px;
+}
+
+.reg .container .regis-card h2 {
+  background-color: var(--main-color);
+  color: white;
+  width: 100%;
+  padding: 15px;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  padding-left: 25px;
+  font-size: 22px;
+}
+
+.doc-first-row {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.doc-first-row .lhs,
+.doc-first-row .rhs{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.doc-first-row span{
+  margin-bottom: 8px;
+}
+
+.doc-second-row {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.doc-second-row .lhs,
+.doc-second-row .rhs{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.doc-second-row .rhs{
+  position: relative;
+}
+
+.doc-second-row span{
+  margin-bottom: 8px;
+}
+
+.doc-third-row {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.doc-third-row .lhs,
+.doc-third-row .rhs{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+
+.doc-third-row span{
+  margin-bottom: 8px;
+}
+
+.doc-fourth-row {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  align-items: center;
+}
+
+.doc-fourth-row .lhs, .doc-fourth-row .rhs{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.doc-fourth-row span{
+  margin-bottom: 8px;
+}
+
+.error{
+  border: none;
+  border-bottom: 2px solid rgba(204, 37, 37, 0.774);
+  font-size: 16px;
+}
+
+.error:focus{
+  outline: none;
+}
+
+.doctor-submit-button {
+  padding: 10px 25px;
+  font-size: 15px;
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-left: auto;
+  display: block;
+}
