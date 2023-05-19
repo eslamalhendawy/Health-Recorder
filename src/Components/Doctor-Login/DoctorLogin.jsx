@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import loginImage from "../../Images/Log In/dr3.png";
 import "./Log-In.css";
 
-function Login() {
+function DoctorLogin() {
   useEffect(() => {
     document.title = "Health Recorder | Login";
     window.scrollTo(0, 0);
@@ -19,7 +19,7 @@ function Login() {
               <img src={loginImage} alt="Healh Care" />
             </div>
             <div className="rhs">
-              <h2>Welcome Back</h2>
+              <h2>Welcome Back Doctor!</h2>
               <p>Login To Your Account</p>
               <form>
                 <input type="text" placeholder="Email" />
@@ -36,4 +36,4 @@ function Login() {
   )
 }
 
-export default Login
+export default DoctorLogin

@@ -98,12 +98,12 @@ nav {
   list-style: none;
 }
 
-.nav-ul li a {
+.nav-ul > li > a {
   color: #807979;
   position: relative;
 }
 
-.nav-ul li a::before {
+.nav-ul > li > a::before {
   content: "";
   position: absolute;
   width: 0;
@@ -113,12 +113,12 @@ nav {
   background-color: var(--main-color);
 }
 
-.nav-ul li a:hover {
+.nav-ul > li > a:hover {
   transition-duration: var(--main-transition);
   color: black;
 }
 
-.nav-ul li a:hover::before {
+.nav-ul > li > a:hover::before {
   transition-duration: var(--main-transition);
   width: 100%;
 }
