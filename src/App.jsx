@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("DoctorFirstName")));
+  const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem("userFirstName")));
 
   return (
     <BrowserRouter>
