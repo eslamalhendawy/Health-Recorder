@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import "./header.css";
 import logo from "../../Images/Home/logo.png";
+import HeaderLoggedOut from "../HeaderLoggedOut/HeaderLoggedOut";
+import HeaderLoggedIn from "../HeaderLoggedIn/HeaderLoggedIn";
 
-function Header() {
-  function clickHandler() {}
-
+function Header(props) {
   return (
     <div className="header">
       <div className="container">
@@ -17,32 +17,7 @@ function Header() {
               <h1 className="title">Health Recorder</h1>
             </Link>
           </div>
-          <ul className="nav-ul">
-            <li className="li-1">
-              <a onClick={clickHandler} href="#">
-                Login
-              </a>
-              <ul className="login-list">
-                <li>
-                  <Link to="/doctor-login">Doctor</Link>
-                </li>
-                <li>
-                  <Link to="/patient-login">Patient</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="li-1">
-              <a href="#">Sign Up</a>
-              <ul className="login-list">
-                <li>
-                  <Link to="/doctor-reg">Doctor</Link>
-                </li>
-                <li>
-                  <Link to="/patient-reg/patient-reg1">Patient</Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          {props.loggedIn ? <HeaderLoggedIn loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} /> : <HeaderLoggedOut loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} />}
         </nav>
       </div>
     </div>

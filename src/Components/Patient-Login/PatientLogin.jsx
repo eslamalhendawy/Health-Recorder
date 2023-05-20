@@ -33,9 +33,9 @@ function PatientLogin() {
       const response = await axios.post(url, { email, password });
       if(response.data) {
         console.log(response);
-        localStorage.setItem("PatientFirstName", response.data.data.pationt.fristName);
-        localStorage.setItem("PatientLastName", response.data.data.pationt.lastName);
-        localStorage.setItem("PatientEmail", response.data.data.pationt.email);
+        localStorage.setItem("userFirstName", response.data.data.pationt.fristName);
+        localStorage.setItem("userLastName", response.data.data.pationt.lastName);
+        localStorage.setItem("userEmail", response.data.data.pationt.email);
       }
     } catch (e) {
       console.log(e);

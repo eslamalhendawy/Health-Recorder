@@ -5,7 +5,7 @@ import axios from "axios";
 import loginImage from "../../Images/Log In/dr3.png";
 import "./Doctor-Log-In.css";
 
-function DoctorLogin() {
+function DoctorLogin(props) {
   useEffect(() => {
     document.title = "Health Recorder | Login";
     window.scrollTo(0, 0);
@@ -24,9 +24,11 @@ function DoctorLogin() {
       const response = await axios.post(url, { email, password });
       if(response.data) {
         console.log(response);
-        localStorage.setItem("DoctorFirstName", response.data.data.doctor.firstName);
-        localStorage.setItem("DoctorLastName", response.data.data.doctor.lastName);
-        localStorage.setItem("DoctorEmail", response.data.data.doctor.email);
+        localStorage.setItem("userFirstName", response.data.data.doctor.firstName);
+        localStorage.setItem("userLastName", response.data.data.doctor.lastName);
+        localStorage.setItem("userEmail", response.data.data.doctor.email);
+        // eslint-disable-next-line react/prop-types
+        props.setLoggedIn(true);
       }
     }catch(e){
       console.log(e);
