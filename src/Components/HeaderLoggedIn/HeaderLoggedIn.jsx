@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 function HeaderLoggedIn(props) {
+  let navigate = useNavigate();
   function handleLogOut() {
+    // eslint-disable-next-line react/prop-types
     props.setLoggedIn(false);
-    localStorage.removeItem("DoctorFirstName");
+    localStorage.removeItem("userFirstName");
+    localStorage.removeItem("userLastName");
+    localStorage.removeItem("userEmail");
+    navigate("/");
   }
 
   return (

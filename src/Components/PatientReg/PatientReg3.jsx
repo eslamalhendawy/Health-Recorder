@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PatientReg3() {
+  let navigate = useNavigate();
   const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts";
 
   const [inputStyle10, changeStyle10] = useState("main-input");
@@ -19,11 +20,15 @@ function PatientReg3() {
 
   async function submitHandler() {
     try {
-      await axios.post(url, {fristName: "Test", lastName: "Test", password: "test0123456789" ,age: 22, bloodType: "O+", gender: "mail", email: "test2@test.com", "phoneNumber": "01012609955", National_ID: "30109193400190"})
+      await axios.post(url, { fristName: "Test", lastName: "Test", password: "test0123456789", age: 22, bloodType: "O+", gender: "mail", email: "test2@test.com", phoneNumber: "01012609955", National_ID: "30109193400190" });
       console.log("Success");
     } catch (e) {
       console.log(e.response.data);
     }
+  }
+
+  function goSecondPage(){
+    navigate("/patient-reg/patient-reg2");
   }
 
   return (
@@ -84,10 +89,7 @@ function PatientReg3() {
               </div>
             </div>
             <div className="controls">
-              <Link to="/patient-reg/patient-reg2">
-                <button className="previous-button">Previous</button>
-              </Link>
-
+              <button onClick={goSecondPage} className="previous-button">Previous</button>
               <button onClick={submitHandler} className="next-button">
                 Register
               </button>

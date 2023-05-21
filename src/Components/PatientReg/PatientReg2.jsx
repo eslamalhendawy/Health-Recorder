@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PatientReg2() {
+  let navigate = useNavigate();
   const [thisCD, changePCD] = useState("no");
   const [inputStyle6, changeStyle6] = useState("main-input");
   const [inputStyle7, changeStyle7] = useState("main-input");
@@ -15,6 +16,15 @@ function PatientReg2() {
 
   let cdInput1 = false;
   let cdInput2 = false;
+
+  function goFirstPage(){
+    navigate("/patient-reg/patient-reg1");
+  }
+
+  function goThirdPage(){
+    navigate("/patient-reg/patient-reg3");
+  }
+
 
   return (
     <div className="reg">
@@ -65,12 +75,8 @@ function PatientReg2() {
               <input type="text" className={inputStyle9} ref={mForOtherHealthProblems} />
             </div>
             <div className="controls">
-              <Link to="/patient-reg/patient-reg1">
-                <button className="previous-button">Previous</button>
-              </Link>
-              <Link to="/patient-reg/patient-reg3">
-                <button className="next-button">Next</button>
-              </Link>
+                <button onClick={goFirstPage} className="previous-button">Previous</button>
+                <button onClick={goThirdPage} className="next-button">Next</button>
             </div>
           </div>
         </div>

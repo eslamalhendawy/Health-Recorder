@@ -11,7 +11,7 @@ function PatientLogin() {
     window.scrollTo(0, 0);
   }, []);
 
-  const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/login";
+  const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/pationts/login";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,17 +29,19 @@ function PatientLogin() {
   };
   async function submitHandler(e) {
     e.preventDefault();
-    try {
-      const response = await axios.post(url, { email, password });
-      if(response.data) {
-        console.log(response);
-        localStorage.setItem("userFirstName", response.data.data.pationt.fristName);
-        localStorage.setItem("userLastName", response.data.data.pationt.lastName);
-        localStorage.setItem("userEmail", response.data.data.pationt.email);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    await axios
+      .post(url, { email, password })
+      .then((res) => {
+        localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
+        localStorage.setItem("userLastName", res.data.data.pationt.lastName);
+        localStorage.setItem("userEmail", res.data.data.pationt.email);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 600);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   return (
     <>
