@@ -30,6 +30,7 @@ function DoctorLogin() {
         localStorage.setItem("userEmail", res.data.data.doctor.email);
         localStorage.setItem("doctorDepartment", res.data.data.doctor.department);
         localStorage.setItem("doctorPhone", res.data.data.doctor.phoneNumber);
+        localStorage.setItem("doctorAddress", res.data.data.doctor.address);
         setTimeout(() => {
           window.location.reload(true);
         }, 400);

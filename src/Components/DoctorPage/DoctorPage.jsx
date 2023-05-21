@@ -26,7 +26,7 @@ function DoctorPage() {
           <span>{`+${localStorage.getItem("doctorPhone")}`}</span>
           <a href="">
             <i className="fa-solid fa-location-dot"></i>
-            Clinic Location
+            {localStorage.getItem("doctorAddress")}
           </a>
         </div>
       </div>
