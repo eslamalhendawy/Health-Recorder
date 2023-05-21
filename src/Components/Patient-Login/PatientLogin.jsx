@@ -37,7 +37,7 @@ function PatientLogin() {
         localStorage.setItem("userEmail", res.data.data.pationt.email);
         setTimeout(() => {
           window.location.reload(true);
-        }, 600);
+        }, 400);
       })
       .catch((error) => {
         console.log(error);

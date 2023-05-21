@@ -114,6 +114,19 @@
   outline: none;
 }
 
+.fifth-row{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.fifth-row span{
+  position: absolute;
+  left: 300px;
+  font-size: 18px;
+  color: #d9534f;
+}
+
 .doctor-submit-button {
   padding: 10px 25px;
   font-size: 15px;

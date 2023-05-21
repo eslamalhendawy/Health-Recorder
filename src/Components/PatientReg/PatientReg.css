@@ -123,7 +123,6 @@
   border-radius: 30px;
   cursor: pointer;
   margin-left: auto;
-  display: block;
 }
 
 /* Page 2 */
@@ -315,4 +314,31 @@
 
 .p3-fourth-row span {
   margin-bottom: 8px;
+}
+
+.bloodtype-select {
+  display: block;
+  width: 200px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid #294d61;
+  color: #294d61;
+}
+
+.bloodtype-select:focus{
+  outline: none;
+}
+
+.sixth-row{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.sixth-row span{
+  position: absolute;
+  left: 275px;
+  font-size: 18px;
+  color: #d9534f;
 }

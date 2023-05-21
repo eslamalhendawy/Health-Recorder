@@ -5,6 +5,7 @@ import DoctorLogin from "./Components/Doctor-Login/doctorLogin";
 import PatientLogin from "./Components/Patient-Login/PatientLogin"
 import DoctorReg from "./Components/DoctorReg/DoctorReg"
 import PatientReg from "./Components/PatientReg/PatientReg";
+import DoctorPage from "./Components/DoctorPage/DoctorPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/patient-login" element={<PatientLogin/>} setLoggedIn={setLoggedIn}/>
         <Route exact path="/doctor-reg" element={<DoctorReg/>} />
         <Route exact path="/patient-reg/*" element={<PatientReg/>} />
+        <Route exact path="/doctor-page" element={<DoctorPage />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

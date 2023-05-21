@@ -1,22 +1,24 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PatientReg1() {
   let navigate = useNavigate();
-  const [inputStyle1, changeStyle1] = useState("main-input");
-  const [inputStyle2, changeStyle2] = useState("main-input");
-  const [inputStyle3, changeStyle3] = useState("main-input");
-  const [inputStyle4, changeStyle4] = useState("main-input");
-  const [inputStyle5, changeStyle5] = useState("main-input");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [age, setAge] = useState("");
+  const [bloodtype, setBloodtype] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const regCharectars = /^[A-Za-z]+$/;
+  const regNumbers = /^[0-9]+$/;
+  const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
   const [initialType, setType1] = useState("password");
   const [initialClass, setClass1] = useState("fa-solid fa-eye pass-eye");
-  const [gender, changeGender] = useState("male");
-
-  const pFirstName = useRef();
-  const pLastName = useRef();
-  const pEmail = useRef();
-  const pPassword = useRef();
-  const pPhone = useRef();
+  const [gender, setGender] = useState("male");
 
   const changeType = () => {
     if (initialType === "password") {
@@ -28,12 +30,33 @@ function PatientReg1() {
     }
   };
 
-  const onGenderChange = (e) => {
-    changeGender(e.target.value);
-  };
-
-  function goSecondPage(){
-    navigate("/patient-reg/patient-reg2");
+  function goSecondPage() {
+    if (firstName === "") {
+      setErrorMessage("Enter First Name");
+    } else if (!regCharectars.test(firstName)) {
+      setErrorMessage("Enter Correct First Name");
+    } else if (lastName === "") {
+      setErrorMessage("Enter Last Name");
+    } else if (!regCharectars.test(lastName)) {
+      setErrorMessage("Enter Correct Last Name");
+    } else if (email === "") {
+      setErrorMessage("Enter Email");
+    } else if (!regEmail.test(email)) {
+      setErrorMessage("Enter Correct Email");
+    } else if (password === "") {
+      setErrorMessage("Enter Password");
+    } else if (password.length < 8) {
+      setErrorMessage("Password Must Be 8 Charrecters Or Longer");
+    } else if (phoneNumber === "") {
+      setErrorMessage("Enter Phone Number");
+    } else if (phoneNumber.length != 11 || !regNumbers.test(phoneNumber)) {
+      setErrorMessage("Enter Correct Phone Number");
+    } else if (age === "") {
+      setErrorMessage("Enter Age");
+    } else {
+      setErrorMessage("");
+      navigate("/patient-reg/patient-reg2");
+    }
   }
 
   return (
@@ -45,33 +68,33 @@ function PatientReg1() {
             <div className="p1-first-row">
               <div className="lhs">
                 <span>First Name :</span>
-                <input type="text" className={inputStyle1} ref={pFirstName} />
+                <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="main-input" />
               </div>
               <div className="rhs">
                 <span>Last Name :</span>
-                <input type="text" className={inputStyle2} ref={pLastName} />
+                <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="main-input" />
               </div>
             </div>
             <div className="p1-second-row">
               <span>Email :</span>
-              <input type="email" className={inputStyle3} ref={pEmail} />
+              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="main-input" />
             </div>
             <div className="p1-third-row">
               <span>Password</span>
-              <input type={initialType} className={inputStyle4} ref={pPassword} />
+              <input value={password} onChange={(e) => setPassword(e.target.value)} type={initialType} className="main-input" />
               <i className={initialClass} onClick={changeType}></i>
             </div>
             <div className="p1-forth-row">
               <div className="lhs">
                 <span>Phone Number :</span>
-                <input type="text" className={inputStyle5} ref={pPhone} />
+                <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} type="text" className="main-input" />
               </div>
               <div className="rhs">
                 <span>Gender :</span>
                 <div>
-                  <input type="radio" name="gender" value="male" checked={gender === "male"} onChange={onGenderChange} />
+                  <input type="radio" name="gender" value="male" checked={gender === "male"} onChange={(e) => setGender(e.target.value)} />
                   <span>Male</span>
-                  <input type="radio" name="gender" value="female" checked={gender === "female"} onChange={onGenderChange} />
+                  <input type="radio" name="gender" value="female" checked={gender === "female"} onChange={(e) => setGender(e.target.value)} />
                   <span>Female</span>
                 </div>
               </div>
@@ -79,27 +102,28 @@ function PatientReg1() {
             <div className="p1-fifth-row">
               <div className="lhs">
                 <span>Age :</span>
-                <input type="number" className="main-input" />
+                <input value={age} onChange={(e) => setAge(e.target.value)} type="number" className="main-input" />
               </div>
               <div className="rhs">
                 <span>Blood Type:</span>
-                {/* <Box>
-              <FormControl fullWidth>
-                <Select labelId="demo-simple-select-label" id="demo-simple-select" value={bloodType} onChange={handleChange1}>
-                  <MenuItem value={"A+"}>A+</MenuItem>
-                  <MenuItem value={"A-"}>A-</MenuItem>
-                  <MenuItem value={"B+"}>B+</MenuItem>
-                  <MenuItem value={"B-"}>B-</MenuItem>
-                  <MenuItem value={"O+"}>O+</MenuItem>
-                  <MenuItem value={"O-"}>O-</MenuItem>
-                  <MenuItem value={"AB+"}>AB+</MenuItem>
-                  <MenuItem value={"AB-"}>AB-</MenuItem>
-                </Select>
-              </FormControl>
-            </Box> */}
+                <select className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
               </div>
             </div>
-            <button onClick={goSecondPage} className="first-button">Next</button>
+            <div className="sixth-row">
+              <span>{errorMessage}</span>
+              <button onClick={goSecondPage} className="first-button">
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>

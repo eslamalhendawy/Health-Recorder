@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function PatientReg3() {
   let navigate = useNavigate();
-  const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts";
+  const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/pationts";
 
   const [inputStyle10, changeStyle10] = useState("main-input");
   const [inputStyle11, changeStyle11] = useState("main-input");
