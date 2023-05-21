@@ -1,0 +1,33 @@
+.header-logged-in{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-logged-in span {
+    font-size: 18px;
+    font-weight: 500;
+    color: #294D61;
+}
+
+.header-logged-in button{
+    display: block;
+    padding: 12px 17px;
+    border-radius: 8px;
+    border: none;
+    /* background-color: #294D61; */
+    background-color: #6da5c0;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: 0.5s;
+}
+
+.header-logged-in button:hover{
+    background-color: #294D61;
+}
+
+.header-logged-in i{
+    font-size: 30px;
+}

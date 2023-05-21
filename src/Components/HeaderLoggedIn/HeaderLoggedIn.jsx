@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./header-logged-in.css"
 function HeaderLoggedIn(props) {
   let navigate = useNavigate();
   function handleLogOut() {
@@ -11,8 +12,8 @@ function HeaderLoggedIn(props) {
   }
 
   return (
-    <div>
-      <span>Hello {localStorage.getItem("DoctorFirstName")}</span>
+    <div className="header-logged-in">
+      <i className="fa-regular fa-circle-user"></i>
       <button onClick={handleLogOut}>Sign Out</button>
     </div>
   );
