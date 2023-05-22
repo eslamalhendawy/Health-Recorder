@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
 import logo from "../../Images/Home/logo.png";
 import HeaderLoggedOut from "../HeaderLoggedOut/HeaderLoggedOut";
 import HeaderLoggedIn from "../HeaderLoggedIn/HeaderLoggedIn";
+import StateContext from "../../StateContext";
 
-function Header(props) {
+function Header() {
+  const appState = useContext(StateContext);
+  
   return (
     <div className="header">
       <div className="container">
@@ -17,7 +21,7 @@ function Header(props) {
               <h1 className="title">Health Recorder</h1>
             </Link>
           </div>
-          {props.loggedIn ? <HeaderLoggedIn loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} /> : <HeaderLoggedOut loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} />}
+          {appState.loggedIn ? <HeaderLoggedIn /> : <HeaderLoggedOut />}
         </nav>
       </div>
     </div>

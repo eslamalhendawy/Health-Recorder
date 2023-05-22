@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import PatientCard from "../PatientCard/PatientCard";
 import "./DoctorPage.css";
-import doctor from "../../Images/Doctor Page/doctor.jpg";
 import patient1 from "../../Images/Doctor Page/patient-1.png"
 import patient2 from "../../Images/Doctor Page/patient-2.png"
 import patient3 from "../../Images/Doctor Page/patient-3.png"
@@ -20,7 +19,7 @@ function DoctorPage() {
     <div className="page">
       <div className="sidebar">
         <div className="doc-information">
-          <img src={doctor} alt="" />
+          <img src={localStorage.getItem("doctorImage")} alt="Doctor's Photo" />
           <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("userLastName")}`}</h3>
           <span>{localStorage.getItem("doctorDepartment")}</span>
           <span>{`+${localStorage.getItem("doctorPhone")}`}</span>

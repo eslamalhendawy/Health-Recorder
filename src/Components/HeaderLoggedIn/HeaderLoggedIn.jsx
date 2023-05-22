@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useContext } from "react";
+import DispatchContext from "../../DispatchContext";
 import "./header-logged-in.css";
-function HeaderLoggedIn(props) {
+function HeaderLoggedIn() {
+  const appDispatch = useContext(DispatchContext);
   let navigate = useNavigate();
   function handleLogOut() {
     // eslint-disable-next-line react/prop-types
-    props.setLoggedIn(false);
+    appDispatch({ type: "logout" });
     localStorage.clear();
     navigate("/");
   }
