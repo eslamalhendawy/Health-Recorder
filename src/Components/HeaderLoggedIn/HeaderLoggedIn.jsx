@@ -14,10 +14,15 @@ function HeaderLoggedIn() {
 
   return (
     <div className="header-logged-in">
-      <Link to={"/doctor-page"}>
-        <i className="fa-regular fa-circle-user"></i>
-      </Link>
-
+      {localStorage.getItem("doctorDepartment") ? (
+        <Link to="/doctor-page">
+          <i className="fa-regular fa-circle-user"></i>
+        </Link>
+      ) : (
+        <Link to="/patient-page">
+          <i className="fa-regular fa-circle-user"></i>
+        </Link>
+      )}
       <button onClick={handleLogOut}>Sign Out</button>
     </div>
   );

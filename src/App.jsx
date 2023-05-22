@@ -14,15 +14,15 @@ import PatientLogin from "./Components/Patient-Login/PatientLogin";
 import DoctorReg from "./Components/DoctorReg/DoctorReg";
 import PatientReg from "./Components/PatientReg/PatientReg";
 import DoctorPage from "./Components/DoctorPage/DoctorPage";
-
+import PatientPage from "./Components/PatientPage/PatientPage";
 
 function App() {
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("userFirstName")),
-  }
+  };
 
-  function myReducer(draft, action){
-    switch (action.type){
+  function myReducer(draft, action) {
+    switch (action.type) {
       case "login":
         draft.loggedIn = true;
         break;
@@ -32,13 +32,13 @@ function App() {
     }
   }
 
-  const [state, dispatch] = useImmerReducer(myReducer, initialState)
+  const [state, dispatch] = useImmerReducer(myReducer, initialState);
 
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-          <Header/>
+          <Header />
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/doctor-login" element={<DoctorLogin />} />
@@ -46,6 +46,7 @@ function App() {
             <Route exact path="/doctor-reg" element={<DoctorReg />} />
             <Route exact path="/patient-reg/*" element={<PatientReg />} />
             <Route exact path="/doctor-page" element={<DoctorPage />} />
+            <Route exact path="/patient-page" element={<PatientPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

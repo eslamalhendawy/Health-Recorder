@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import loginImage from "../../Images/Log In/dr3.png";
 import "./Log-In.css";
 
 function PatientLogin() {
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "Health Recorder | Login";
     window.scrollTo(0, 0);
@@ -32,12 +33,21 @@ function PatientLogin() {
     await axios
       .post(url, { email, password })
       .then((res) => {
+        console.log(res);
         localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
         localStorage.setItem("userLastName", res.data.data.pationt.lastName);
         localStorage.setItem("userEmail", res.data.data.pationt.email);
+        localStorage.setItem("patientBloodtype", res.data.data.pationt.bloodType);
+        localStorage.setItem("patientNationalID", res.data.data.pationt.National_ID);
+        localStorage.setItem("patientAge", res.data.data.pationt.age);
+        localStorage.setItem("patientGender", res.data.data.pationt.gender);
+        localStorage.setItem("patientImg", res.data.data.pationt.image);
+        localStorage.setItem("patientPhone", res.data.data.pationt.phoneNumber);
+        localStorage.setItem("patientID", res.data.data.pationt._id);
         setTimeout(() => {
           window.location.reload(true);
         }, 400);
+        navigate("/patient-page")
       })
       .catch((error) => {
         console.log(error);
