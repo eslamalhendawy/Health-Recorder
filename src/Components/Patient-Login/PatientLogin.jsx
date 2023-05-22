@@ -52,13 +52,13 @@ function PatientLogin() {
               <img src={loginImage} alt="Healh Care" />
             </div>
             <div className="rhs">
-              <h2>Welcome Back Patient !</h2>
+              <h2>Welcome Back Patient!</h2>
               <p>Login To Your Account</p>
               <form>
                 <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
                 <input onChange={(e) => setPassword(e.target.value)} type={passwordType} placeholder="Password" />
                 <i className={passwordIcon} onClick={changeType}></i>
-                <input type="submit" value="Log In" className="clickable" onClick={submitHandler} />
+                <input type="submit" value="Log In" className="clickable login-button" onClick={submitHandler} />
               </form>
               <Link className="clickable" to="/patient-reg/patient-reg1">
                 Create Account

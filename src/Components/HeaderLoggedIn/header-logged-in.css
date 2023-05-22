@@ -16,7 +16,6 @@
     padding: 12px 17px;
     border-radius: 8px;
     border: none;
-    /* background-color: #294D61; */
     background-color: #6da5c0;
     cursor: pointer;
     color: white;
@@ -30,5 +29,16 @@
 
 .header-logged-in i{
     font-size: 30px;
-    color: black;
+    color: #807979;
+}
+
+.header-logged-in i:hover{
+    color: rgba(0, 0, 0, 0.699);
+    transition: 0.3s;
+}
+
+@media (max-width: 769px) {
+    .header-logged-in{
+        display: none;
+    }
 }

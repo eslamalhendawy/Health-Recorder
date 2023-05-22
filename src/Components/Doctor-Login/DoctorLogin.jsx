@@ -3,7 +3,7 @@ import { Link , useNavigate} from "react-router-dom";
 import axios from "axios";
 
 import loginImage from "../../Images/Log In/dr3.png";
-import "./Doctor-Log-In.css";
+// import "./Doctor-Log-In.css";
 
 function DoctorLogin() {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ function DoctorLogin() {
                 <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
                 <input onChange={(e) => setPassword(e.target.value)} type={passwordType} placeholder="Password" />
                 <i className={passwordIcon} onClick={changeType}></i>
-                <input type="submit" value="Log In" className="clickable" onClick={submitHandler} />
+                <input type="submit" value="Log In" className="clickable login-button" onClick={submitHandler} />
               </form>
               <Link className="clickable" to="/doctor-reg">
                 Create Account

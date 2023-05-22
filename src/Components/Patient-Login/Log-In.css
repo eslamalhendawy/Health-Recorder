@@ -54,7 +54,7 @@
 
 .card .rhs p {
   margin: 40px 0;
-  color: var(--main-color);
+  color: #294d61;
   font-size: 25px;
 }
 
@@ -71,14 +71,14 @@
   padding: 10px;
   padding-left: 0;
   margin-bottom: 15px;
-  caret-color: var(--main-color);
-  color: var(--main-color);
+  caret-color: #294d61;
+  color: #294d61;
   font-size: 18px;
 }
 
 .card .rhs form input[type="text"]::placeholder,
 .card .rhs form input[type="password"]::placeholder {
-  color: var(--main-color);
+  color: #294d61;
   transition: 0.5s;
 }
 
@@ -94,7 +94,7 @@
 
 .card .rhs form input[type="submit"] {
   color: white;
-  background-color: var(--main-color);
+  background-color: #6da5c0;
   padding: 8px 30px;
   border: none;
   font-size: 18px;
@@ -128,4 +128,9 @@ div.rhs form i.pass-eye {
   position: relative;
   bottom: 45px;
   right: -100px;
+}
+
+form input[type= "submit"].clickable.login-button:hover{
+  background-color: #294d61;
+  transition: 0.5s;
 }
