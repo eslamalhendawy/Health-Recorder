@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./DoctorReg.css";
 import "../PatientReg/PatientReg.css";
 import axios from "axios";
@@ -8,6 +9,7 @@ function DoctorReg() {
     document.title = "Health Recorder | Doctor Sign Up";
     window.scrollTo(0, 0);
   }, []);
+  const navigate = useNavigate();
 
   const regCharectars = /^[A-Za-z\s]*$/;
   const regNumbers = /^[0-9]+$/;
@@ -31,17 +33,17 @@ function DoctorReg() {
     } else if (!regCharectars.test(firstName)) {
       setErrorMessage("Enter Correct First Name");
     } else if (lastName === "") {
-      setErrorMessage("Enter Last Name")
+      setErrorMessage("Enter Last Name");
     } else if (!regCharectars.test(lastName)) {
-      setErrorMessage("Enter Correct Last Name")
+      setErrorMessage("Enter Correct Last Name");
     } else if (email === "") {
-      setErrorMessage("Enter Email")
+      setErrorMessage("Enter Email");
     } else if (!regEmail.test(email)) {
-      setErrorMessage("Enter Correct Email")
+      setErrorMessage("Enter Correct Email");
     } else if (password === "") {
-      setErrorMessage("Enter Password")
+      setErrorMessage("Enter Password");
     } else if (password.length < 8) {
-      setErrorMessage("Password Must Be 8 Charrectars Or Longer")
+      setErrorMessage("Password Must Be 8 Charrectars Or Longer");
     } else if (department === "") {
       setErrorMessage("Enter Department");
     } else if (!regCharectars.test(department)) {
@@ -49,19 +51,31 @@ function DoctorReg() {
     } else if (phoneNumber === "") {
       setErrorMessage("Enter Phone Number");
     } else if (!regNumbers.test(phoneNumber) || phoneNumber.length != 11) {
-      setErrorMessage("Enter Correct Phone Number")
+      setErrorMessage("Enter Correct Phone Number");
     } else if (address === "") {
-      setErrorMessage("Enter Address")
+      setErrorMessage("Enter Address");
     } else if (age === "") {
-      setErrorMessage("Enter Age")
-    }else {
+      setErrorMessage("Enter Age");
+    } else {
       setErrorMessage("");
-      try {
-        await axios.post(url, { firstName, lastName, email, password, department, phoneNumber, address, age });
-        console.log("Success");
-      } catch (e) {
-        console.log(e.response.data);
-      }
+      await axios
+        .post(url, { firstName, lastName, email, password, department, phoneNumber, address, age })
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("userFirstName", res.data.data.doctor.firstName);
+          localStorage.setItem("userLastName", res.data.data.doctor.lastName);
+          localStorage.setItem("userEmail", res.data.data.doctor.email);
+          localStorage.setItem("doctorDepartment", res.data.data.doctor.department);
+          localStorage.setItem("doctorPhone", res.data.data.doctor.phoneNumber);
+          localStorage.setItem("doctorAddress", res.data.data.doctor.address);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 400);
+          navigate("/doctor-page");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
 
