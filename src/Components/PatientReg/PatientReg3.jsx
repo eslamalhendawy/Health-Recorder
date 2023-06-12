@@ -1,33 +1,36 @@
 import axios from "axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PatientReg3() {
   let navigate = useNavigate();
   const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/pationts";
+  let x = false;
+  let y = false;
 
-  const [inputStyle10, changeStyle10] = useState("main-input");
-  const [inputStyle11, changeStyle11] = useState("main-input");
-  const [inputStyle12, changeStyle12] = useState("main-input");
-  const [inputStyle13, changeStyle13] = useState("main-input");
   const [pSurgury, changePSurgery] = useState("no");
   const [pGenetic, changePGenetic] = useState("no");
+  const [surgery, setSurgery] = useState("");
+  const [surgeryDate, setSurgeryDate] = useState("");
+  const [relative, setRelative] = useState("");
+  const [genetic, setGenetic] = useState("");
+  const [geneticMed, setGeneticMed] = useState("");
 
-  const pSurgery = useRef();
-  const relativeRelation = useRef();
-  const geneticName = useRef();
-  const geneticMedication = useRef();
-
-  async function submitHandler() {
-    try {
-      await axios.post(url, { fristName: "Test", lastName: "Test", password: "test0123456789", age: 22, bloodType: "O+", gender: "mail", email: "test2@test.com", phoneNumber: "01012609955", National_ID: "30109193400190" });
-      console.log("Success");
-    } catch (e) {
-      console.log(e.response.data);
-    }
+  if (pSurgury === "no") {
+    x = true;
   }
 
-  function goSecondPage(){
+  if (pGenetic === "no") {
+    y = true;
+  }
+
+  async function submitHandler() {
+    await axios.post(url, { fristName: "Test", lastName: "Test", password: "test0123456789", age: 22, bloodType: "O+", gender: "mail", email: "test2@test.com", phoneNumber: "01012609955", National_ID: "30109193400190" }).then((res) => {
+      console.log(res);
+    });
+  }
+
+  function goSecondPage() {
     navigate("/patient-reg/patient-reg2");
   }
 
@@ -49,16 +52,12 @@ function PatientReg3() {
               </div>
               <div className="rhs">
                 <span>Surgery Type</span>
-                <input type="text" className={inputStyle10} ref={pSurgery} />
+                <input type="text" className="main-input" disabled={x} onChange={(e) => setSurgery(e.target.value)} />
               </div>
             </div>
             <div className="p3-second-row">
               <span>Date Of Surgery :</span>
-              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker className="test" disabled={surgeryControl} />
-                </DemoContainer>
-              </LocalizationProvider> */}
+              <input type="date" className="bloodtype-select" disabled={x} onChange={(e) => setSurgeryDate(e.target.value)} />
             </div>
           </div>
           <h2 className="special-h2">Genetic Disease</h2>
@@ -75,21 +74,31 @@ function PatientReg3() {
               </div>
               <div className="rhs">
                 <span>Relative Relation :</span>
-                <input type="text" className={inputStyle11} ref={relativeRelation} />
+                <select className="bloodtype-select" value={relative} onChange={(e) => setRelative(e.target.value)} name="relative" disabled={y}>
+                  <option value="Sibling">Sibling</option>
+                  <option value="Father">Father</option>
+                  <option value="Mother">Mother</option>
+                  <option value="Cousin">Cousin</option>
+                  <option value="Aunt">Aunt</option>
+                  <option value="Uncle">Uncle</option>
+                  <option value="Grandparent">Grandparent</option>
+                </select>
               </div>
             </div>
             <div className="p3-fourth-row">
               <div className="lhs">
                 <span>Name Of Genetic Disease :</span>
-                <input type="text" className={inputStyle12} ref={geneticName} />
+                <input type="text" className="main-input" disabled={y} onChange={(e) => setGenetic(e.target.value)} />
               </div>
               <div className="rhs">
                 <span>Medication :</span>
-                <input type="text" className={inputStyle13} d ref={geneticMedication} />
+                <input type="text" className="main-input" disabled={y} onChange={(e) => setGeneticMed(e.target.value)} />
               </div>
             </div>
             <div className="controls">
-              <button onClick={goSecondPage} className="previous-button">Previous</button>
+              <button onClick={goSecondPage} className="previous-button">
+                Previous
+              </button>
               <button onClick={submitHandler} className="next-button">
                 Register
               </button>

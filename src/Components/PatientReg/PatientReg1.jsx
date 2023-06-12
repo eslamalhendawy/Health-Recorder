@@ -14,6 +14,7 @@ function PatientReg1() {
 
   const regCharectars = /^[A-Za-z]+$/;
   const regNumbers = /^[0-9]+$/;
+  // eslint-disable-next-line no-useless-escape
   const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   const [initialType, setType1] = useState("password");
@@ -106,7 +107,7 @@ function PatientReg1() {
               </div>
               <div className="rhs">
                 <span>Blood Type:</span>
-                <select className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
+                <select value={bloodtype} className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
                   <option value="B+">B+</option>
