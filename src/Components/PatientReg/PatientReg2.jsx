@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./PatientReg.css";
+
+import DispatchContext from "../../DispatchContext";
+
 function PatientReg2() {
+  useEffect(() => {
+    document.title = "Health Recorder | Patient Sign Up";
+    window.scrollTo(0, 0);
+  }, []);
+
   let navigate = useNavigate();
+  const appDispatch = useContext(DispatchContext);
 
   const [thisCD, changePCD] = useState("no");
   const [chronicDisease, setChronicDisease] = useState("");
@@ -21,11 +31,12 @@ function PatientReg2() {
   }
 
   function goFirstPage() {
-    navigate("/patient-reg/patient-reg1");
+    navigate("/patient-reg1");
   }
 
   function goThirdPage() {
-    navigate("/patient-reg/patient-reg3");
+    appDispatch({type: "patient2", data: {chronicDisease, mChronicDisease, healthProblems, mHealthProblems}})
+    navigate("/patient-reg3");
   }
 
   return (

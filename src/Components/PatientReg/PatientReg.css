@@ -110,10 +110,6 @@
   flex: 1;
 }
 
-.p1-fifth-row .rhs span {
-  margin-bottom: 8px;
-}
-
 .p1 .first-button {
   padding: 10px 25px;
   font-size: 15px;
@@ -330,13 +326,23 @@
   outline: none;
 }
 
-.sixth-row{
+.sixth-row {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.sixth-row span {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.seventh-row{
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-.sixth-row span{
+.seventh-row span{
   position: absolute;
   left: 275px;
   font-size: 18px;

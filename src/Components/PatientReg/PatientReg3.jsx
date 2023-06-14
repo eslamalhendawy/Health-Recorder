@@ -1,8 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./PatientReg.css";
+
+import StateContext from "../../StateContext";
+
 function PatientReg3() {
+  useEffect(() => {
+    document.title = "Health Recorder | Patient Sign Up";
+    window.scrollTo(0, 0);
+  }, []);
+
+  const appState = useContext(StateContext);
   let navigate = useNavigate();
   const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/pationts";
   let x = false;
@@ -25,13 +35,32 @@ function PatientReg3() {
   }
 
   async function submitHandler() {
-    await axios.post(url, { fristName: "Test", lastName: "Test", password: "test0123456789", age: 22, bloodType: "O+", gender: "mail", email: "test2@test.com", phoneNumber: "01012609955", National_ID: "30109193400190" }).then((res) => {
+    await axios.post(url, { 
+      fristName: appState.patient1.firstName, 
+      lastName: appState.patient1.lastName, 
+      password: appState.patient1.password, 
+      age: appState.patient1.age, 
+      bloodType: appState.patient1.bloodType, 
+      gender: appState.patient1.gender, 
+      email: appState.patient1.email, 
+      phoneNumber: appState.patient1.phoneNumber, 
+      National_ID: appState.patient1.nationalID,
+      chronicDisease: appState.patient2.chronicDisease,
+      mChronicDisease: appState.patient2.mChronicDisease,
+      healthProblems: appState.patient2.healthProblems,
+      mHealthProblems: appState.patient2.mHealthProblems,
+      surgery,
+      surgeryDate,
+      relative,
+      genetic,
+      geneticMed,
+     }).then((res) => {
       console.log(res);
     });
   }
 
   function goSecondPage() {
-    navigate("/patient-reg/patient-reg2");
+    navigate("/patient-reg2");
   }
 
   return (

@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./PatientReg.css";
+
+import DispatchContext from "../../DispatchContext";
+
 function PatientReg1() {
+  useEffect(() => {
+    document.title = "Health Recorder | Patient Sign Up";
+    window.scrollTo(0, 0);
+  }, []);
+
   let navigate = useNavigate();
+  
+  const appDispatch = useContext(DispatchContext);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
+  const [gender, setGender] = useState("male");
   const [bloodtype, setBloodtype] = useState("");
+  const [nationalID, setNationalID] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const regCharectars = /^[A-Za-z]+$/;
@@ -19,7 +33,7 @@ function PatientReg1() {
 
   const [initialType, setType1] = useState("password");
   const [initialClass, setClass1] = useState("fa-solid fa-eye pass-eye");
-  const [gender, setGender] = useState("male");
+
 
   const changeType = () => {
     if (initialType === "password") {
@@ -54,9 +68,14 @@ function PatientReg1() {
       setErrorMessage("Enter Correct Phone Number");
     } else if (age === "") {
       setErrorMessage("Enter Age");
+    }else if(nationalID === ""){
+      setErrorMessage("Enter National ID")
+    }else if(nationalID.length != 14){
+      setErrorMessage("Enter Correct National ID")
     } else {
+      appDispatch({type: "patient1", data: {firstName, lastName, email, password, phoneNumber, gender,  age, bloodtype, nationalID}})
       setErrorMessage("");
-      navigate("/patient-reg/patient-reg2");
+      navigate("/patient-reg2");
     }
   }
 
@@ -106,20 +125,24 @@ function PatientReg1() {
                 <input value={age} onChange={(e) => setAge(e.target.value)} type="number" className="main-input" />
               </div>
               <div className="rhs">
-                <span>Blood Type:</span>
-                <select value={bloodtype} className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
-                  <option value="A+">A+</option>
-                  <option value="A-">A-</option>
-                  <option value="B+">B+</option>
-                  <option value="B-">B-</option>
-                  <option value="AB+">AB+</option>
-                  <option value="AB-">AB-</option>
-                  <option value="O+">O+</option>
-                  <option value="O-">O-</option>
-                </select>
+                <span>National ID</span>
+                <input value={nationalID} onChange={(e) => setNationalID(e.target.value)} type="number" className="main-input" />
               </div>
             </div>
             <div className="sixth-row">
+              <span>Blood Type:</span>
+              <select value={bloodtype} className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            <div className="seventh-row">
               <span>{errorMessage}</span>
               <button onClick={goSecondPage} className="first-button">
                 Next
