@@ -132,5 +132,5 @@ div.rhs form i.pass-eye {
 
 form input[type= "submit"].clickable.login-button:hover{
   background-color: #294d61;
-  transition: 0.5s;
+  transition: 0.3s;
 }

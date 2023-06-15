@@ -47,7 +47,7 @@ function PatientLogin() {
         setTimeout(() => {
           window.location.reload(true);
         }, 400);
-        navigate("/patient-page")
+        navigate("/patient-page");
       })
       .catch((error) => {
         console.log(error);

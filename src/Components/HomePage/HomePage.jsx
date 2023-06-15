@@ -36,6 +36,7 @@ function HomePage() {
             </p>
           </div>
           <img src={doctor} className="main-landing-photo" alt="" />
+          <a href="#features" className="go-down"><i className="fa-solid fa-angles-down"></i></a>
         </div>
       </div>
       {/* Features */}
@@ -53,8 +54,8 @@ function HomePage() {
             <h2>Advantages For Doctors</h2>
             <img src={feature2} alt="" />
             <p>
-              Help Doctors Provide The Patient With The Best Medical Care By
-              Giving Him All The Information Needed To Reach A Correct Diagnosis
+              Help Doctors Provide Patients With The Best Medical Care By
+              Giving Them All The Information Needed To Reach A Correct Diagnosis
             </p>
           </div>
           <div className="feature-card">
@@ -62,8 +63,8 @@ function HomePage() {
             <img src={feature3} alt="" />
             <p>
               We Store Patient&apos;s Health Data And Arrange It In Easy To
-              Understand Tables That Help Both Doctors And Patients In Keeping
-              Track Of Their Health
+              Understand Tables That Help Both Doctors And Patients To Keep
+              Track Of The Patient&apos;s Health 
             </p>
           </div>
         </div>

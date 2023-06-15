@@ -131,10 +131,15 @@
   padding: 10px 25px;
   font-size: 15px;
   color: white;
-  background-color: var(--main-color);
+  background-color: #6da5c0;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   margin-left: auto;
   display: block;
+}
+
+.doctor-submit-button:hover{
+  background-color: #294d61;
+  transition: 0.3s;
 }

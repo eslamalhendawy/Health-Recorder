@@ -114,11 +114,16 @@
   padding: 10px 25px;
   font-size: 15px;
   color: white;
-  background-color: var(--main-color);
+  background-color: #6da5c0;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   margin-left: auto;
+}
+
+.p1 .first-button:hover{
+  background-color: #294d61;
+  transition: 0.5s;
 }
 
 /* Page 2 */
@@ -198,20 +203,30 @@
   padding: 10px 25px;
   font-size: 15px;
   color: white;
-  background-color: var(--main-color);
+  background-color: #6da5c0;
   border: none;
   border-radius: 30px;
   cursor: pointer;
+}
+
+.next-button:hover {
+  background-color: #294d61;
+  transition: 0.5s;
 }
 
 .previous-button {
   padding: 10px 25px;
   font-size: 15px;
   color: white;
-  background-color: var(--main-color);
+  background-color: #6da5c0;
   border: none;
   border-radius: 30px;
   cursor: pointer;
+}
+
+.previous-button:hover {
+  background-color: #294d61;
+  transition: 0.3s;
 }
 
 /* Page 3 */

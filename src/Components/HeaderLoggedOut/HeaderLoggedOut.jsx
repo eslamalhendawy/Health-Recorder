@@ -21,7 +21,7 @@ function HeaderLoggedOut() {
             <Link to="/doctor-reg">Doctor</Link>
           </li>
           <li>
-            <Link to="/patient-reg/patient-reg1">Patient</Link>
+            <Link to="/patient-reg1">Patient</Link>
           </li>
         </ul>
       </li>

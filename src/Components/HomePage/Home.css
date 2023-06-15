@@ -195,6 +195,12 @@ nav {
   border-top: var(--main-color) 4px solid;
   text-align: center;
   padding: 30px;
+  transition: 0.3s;
+}
+
+.features .container .feature-card:hover {
+  translate: 0px -10px;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 20%);
 }
 
 .features .container .feature-card img {
@@ -250,6 +256,11 @@ nav {
 .about .container .socials i {
   font-size: 25px;
   margin-right: 20px;
+  transition: 0.3s;
+}
+
+.about .container .socials i:hover {
+  color: #294d61;
 }
 
 /* Footer */
@@ -344,4 +355,33 @@ nav {
 
 .register-access ul li a:hover {
   color: white;
+}
+
+a.go-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  color: white;
+}
+
+a.go-down i {
+  animation: bouncing 1.5s infinite;
+}
+
+@keyframes bouncing {
+  0%,
+  10%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40%,
+  60% {
+    transform: translateY(-15px);
+  }
 }
