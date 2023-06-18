@@ -11,9 +11,9 @@ function PatientPage() {
     <div className="page">
       <div className="patient-sidebar">
         <div className="user-information">
-          <img src={localStorage.getItem("patientImg")} alt="" />
-          <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("userLastName")}`}</h3>
-          <span>{localStorage.getItem("userEmail")}</span>
+          <img src={localStorage.getItem("pImage")} alt="" />
+          <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("pLastName")}`}</h3>
+          <span>{localStorage.getItem("pEmail")}</span>
         </div>
         <ul>
           <li>
@@ -56,25 +56,24 @@ function PatientPage() {
           <h2 className="main-head">Personal information</h2>
           <div className="box">
             <div className="profile">
-              <div className="image">
-                <img src={localStorage.getItem("patientImg")} alt="" />
-              </div>
+                <img src={localStorage.getItem("pImage")} alt="" />
+
               <div className="text">
-                <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("userLastName")}`}</h3>
-                <span>{localStorage.getItem("userEmail")}</span>
+                <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("pLastName")}`}</h3>
+                <span>{localStorage.getItem("pEmail")}</span>
               </div>
             </div>
             <div className="information">
               <h5>Age</h5>
-              <span>{localStorage.getItem("patientAge")}</span>
+              <span>{localStorage.getItem("pAge")}</span>
               <h5>Blood type</h5>
-              <span>{localStorage.getItem("patientBloodtype")}</span>
+              <span>{localStorage.getItem("pBloodType")}</span>
             </div>
             <div className="information">
               <h5>Gender</h5>
-              <span>{localStorage.getItem("patientGender")}</span>
+              <span>{localStorage.getItem("pGender")}</span>
               <h5>Contact Number</h5>
-              <span>{`+${localStorage.getItem("patientPhone")}`}</span>
+              <span>{`+${localStorage.getItem("pPhoneNumber")}`}</span>
             </div>
             <div className="contact">
               <i className="fa-solid fa-phone"></i>

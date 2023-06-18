@@ -12,7 +12,7 @@ function PatientLogin() {
     window.scrollTo(0, 0);
   }, []);
 
-  const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/pationts/login";
+  const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/login";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,15 +35,19 @@ function PatientLogin() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
-        localStorage.setItem("userLastName", res.data.data.pationt.lastName);
-        localStorage.setItem("userEmail", res.data.data.pationt.email);
-        localStorage.setItem("patientBloodtype", res.data.data.pationt.bloodType);
-        localStorage.setItem("patientNationalID", res.data.data.pationt.National_ID);
-        localStorage.setItem("patientAge", res.data.data.pationt.age);
-        localStorage.setItem("patientGender", res.data.data.pationt.gender);
-        localStorage.setItem("patientImg", res.data.data.pationt.image);
-        localStorage.setItem("patientPhone", res.data.data.pationt.phoneNumber);
-        localStorage.setItem("patientID", res.data.data.pationt._id);
+        localStorage.setItem("pLastName", res.data.data.pationt.lastName);
+        localStorage.setItem("pEmail", res.data.data.pationt.email);
+        localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
+        localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+        localStorage.setItem("pAge", res.data.data.pationt.age);
+        localStorage.setItem("pGender", res.data.data.pationt.gender);
+        localStorage.setItem("pImage", res.data.data.pationt.image);
+        localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
+        localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
+        localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
+        localStorage.setItem("pSurgury", JSON.stringify(res.data.data.pationt.Surgical_operations));
+        localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
+        localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
         setTimeout(() => {
           window.location.reload(true);
         }, 400);

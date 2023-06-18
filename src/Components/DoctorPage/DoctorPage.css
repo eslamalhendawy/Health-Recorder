@@ -130,7 +130,9 @@ a {
 }
 .doctor-page-container .box .data img{
     width: 122px;
+    height: 122px;
     margin-right: 12px;
+    border-radius: 100%;
 }
 .doctor-page-container .box .data h3{
     display: block;
@@ -139,4 +141,9 @@ a {
 }
 .doctor-page-container .box .data span{
     font-weight: bold;
+}
+
+.search-button{
+  border: none;
+  cursor: pointer;
 }

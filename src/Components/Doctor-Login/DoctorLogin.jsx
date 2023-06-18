@@ -3,7 +3,6 @@ import { Link , useNavigate} from "react-router-dom";
 import axios from "axios";
 
 import loginImage from "../../Images/Log In/dr3.png";
-// import "./Doctor-Log-In.css";
 
 function DoctorLogin() {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ function DoctorLogin() {
     window.scrollTo(0, 0);
   }, []);
 
-  const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/doctors/login";
+  const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/doctors/login";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,6 +31,8 @@ function DoctorLogin() {
         localStorage.setItem("doctorPhone", res.data.data.doctor.phoneNumber);
         localStorage.setItem("doctorAddress", res.data.data.doctor.address);
         localStorage.setItem("doctorImage", res.data.data.doctor.image);
+        localStorage.setItem("doctorID", res.data.data.doctor._id);
+        localStorage.setItem("patientList", JSON.stringify(res.data.data.doctor.pId));
         setTimeout(() => {
           window.location.reload(true);
         }, 400);

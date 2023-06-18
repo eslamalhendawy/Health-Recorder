@@ -17,6 +17,7 @@ import PatientReg2 from "./Components/PatientReg/PatientReg2";
 import PatientReg3 from "./Components/PatientReg/PatientReg3";
 import DoctorPage from "./Components/DoctorPage/DoctorPage";
 import PatientPage from "./Components/PatientPage/PatientPage";
+import DoctorPatientEdit from "./Components/DoctorPatientEdit/DoctorPatientEdit";
 
 function App() {
   const initialState = {
@@ -74,6 +75,7 @@ function App() {
             <Route exact path="/patient-reg3" element={<PatientReg3 />} />
             <Route exact path="/doctor-page" element={<DoctorPage />} />
             <Route exact path="/patient-page" element={<PatientPage />} />
+            <Route exact path="/patient-edit" element={<DoctorPatientEdit />} />
           </Routes>
           <Footer />
         </BrowserRouter>

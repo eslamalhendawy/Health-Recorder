@@ -1,58 +1,54 @@
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import PatientCard from "../PatientCard/PatientCard";
 import "./DoctorPage.css";
-import patient1 from "../../Images/Doctor Page/patient-1.png"
-import patient2 from "../../Images/Doctor Page/patient-2.png"
-import patient3 from "../../Images/Doctor Page/patient-3.png"
-import patient4 from "../../Images/Doctor Page/patient-4.png"
-import patient5 from "../../Images/Doctor Page/patient-5.png"
-import patient6 from "../../Images/Doctor Page/patient-6.png"
-function DoctorPage() {
-  let p1 = {
-    name: "Amira",
-    code: "1",
-    phone: "01012609957",
-    age: "21",
-  }
-  let p2 = {
-    name: "Moamen",
-    code: "2",
-    phone: "01012609957",
-    age: "21",
-  }
-  let p3 = {
-    name: "Ahmed",
-    code: "3",
-    phone: "01012609957",
-    age: "21",
-  }
-  let p4 = {
-    name: "Khaled",
-    code: "4",
-    phone: "01012609957",
-    age: "21",
-  }
-  let p5 = {
-    name: "Osama",
-    code: "5",
-    phone: "01012609957",
-    age: "21",
-  }
-  let p6 = {
-    name: "Adham",
-    code: "6",
-    phone: "01012609957",
-    age: "21",
-  }
 
+function DoctorPage() {
+  let patients = JSON.parse(localStorage.getItem("patientList"));
+  const [patientID, setPatientID] = useState("");
+  const [patientList, setPatientList] = useState(patients.slice(-6).reverse());
+  const navigate = useNavigate();
+
+  async function clickHandler() {
+    await axios.patch(`https://eslamsaber8-healthrecorder.onrender.com/api/v1/pId/${localStorage.getItem("doctorID")}`, {pId: [patientID]})
+    .then((res) => {
+      setPatientList(localStorage.setItem("patientList", JSON.stringify(res.data.data.doctor.pId)));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    await axios.get(`https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/${patientID}`)
+    .then((res) => {
+      localStorage.setItem("pFirstName", res.data.data.pationt.fristName);
+      localStorage.setItem("pLastName", res.data.data.pationt.lastName);
+      localStorage.setItem("pAge", res.data.data.pationt.age);
+      localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
+      localStorage.setItem("pGender", res.data.data.pationt.gender);
+      localStorage.setItem("pEmail", res.data.data.pationt.email);
+      localStorage.setItem("pImage", res.data.data.pationt.image);
+      localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
+      localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+      localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
+      localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
+      localStorage.setItem("pSurgury", JSON.stringify(res.data.data.pationt.Surgical_operations));
+      localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
+      localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 400);
+      navigate("/patient-edit");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   useEffect(() => {
     document.title = "Health Recorder | Doctor Page";
     window.scrollTo(0, 0);
   }, []);
-
 
   return (
     <div className="page">
@@ -72,18 +68,23 @@ function DoctorPage() {
         <div className="doctor-header">
           <h2>My Profile</h2>
           <div className="search">
-            <input type="text" name="search" placeholder="Enter Patient Code" />
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <input onChange={(e) => setPatientID(e.target.value)} type="text" name="search" placeholder="Enter Patient Code" />
+            <button onClick={clickHandler} className="search-button">
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </button>
           </div>
         </div>
 
         <div className="doctor-page-container">
-            <PatientCard data={p1} img={patient1}/>
-            <PatientCard data={p2} img={patient2}/>
-            <PatientCard data={p3} img={patient3}/>
-            <PatientCard data={p4} img={patient4}/>
-            <PatientCard data={p5} img={patient5}/>
-            <PatientCard data={p6} img={patient6}/>
+          {/* <PatientCard data={p1} img={patient1} />
+          <PatientCard data={p2} img={patient2} />
+          <PatientCard data={p3} img={patient3} />
+          <PatientCard data={p4} img={patient4} />
+          <PatientCard data={p5} img={patient5} />
+          <PatientCard data={p6} img={patient6} /> */}
+          {patientList.map((id,index) => {
+            return <PatientCard id={id} key={index} />
+          })}
         </div>
       </div>
     </div>
