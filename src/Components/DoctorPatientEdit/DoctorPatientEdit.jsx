@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import CHTable from "../CHTable/CHTable";
 import SurgeryTable from "../SurgeryTable/SurgeryTable";
-import GeneticTable from "../../GeneticTable/GeneticTable";
+import GeneticTable from "../GeneticTable/GeneticTable";
 import DiagnosisTable from "../DiagnosisTable/DiagnosisTable";
 
 function PatientPage() {
