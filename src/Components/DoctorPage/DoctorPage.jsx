@@ -32,7 +32,7 @@ function DoctorPage() {
       localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
       localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
       localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
-      localStorage.setItem("pSurgury", JSON.stringify(res.data.data.pationt.Surgical_operations));
+      localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
       localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
       localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
       setTimeout(() => {
@@ -76,12 +76,6 @@ function DoctorPage() {
         </div>
 
         <div className="doctor-page-container">
-          {/* <PatientCard data={p1} img={patient1} />
-          <PatientCard data={p2} img={patient2} />
-          <PatientCard data={p3} img={patient3} />
-          <PatientCard data={p4} img={patient4} />
-          <PatientCard data={p5} img={patient5} />
-          <PatientCard data={p6} img={patient6} /> */}
           {patientList.map((id,index) => {
             return <PatientCard id={id} key={index} />
           })}

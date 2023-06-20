@@ -14,17 +14,16 @@ function PatientReg3() {
 
   const appState = useContext(StateContext);
   let navigate = useNavigate();
-  const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/pationts";
+  const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts";
   let x = false;
   let y = false;
 
   const [pSurgury, changePSurgery] = useState("no");
   const [pGenetic, changePGenetic] = useState("no");
-  const [surgery, setSurgery] = useState("");
-  const [surgeryDate, setSurgeryDate] = useState("");
-  const [relative, setRelative] = useState("");
-  const [genetic, setGenetic] = useState("");
-  const [geneticMed, setGeneticMed] = useState("");
+  const [surgery, setSurgery] = useState(" ");
+  const [surgeryDate, setSurgeryDate] = useState(" ");
+  const [genetic, setGenetic] = useState(" ");
+  const [geneticMed, setGeneticMed] = useState(" ");
 
   if (pSurgury === "no") {
     x = true;
@@ -34,29 +33,49 @@ function PatientReg3() {
     y = true;
   }
 
+  let chronicDisease = appState.patient2.chronicDisease;
+  let mChronicDisease = appState.patient2.mChronicDisease;
+  let healthProblems = appState.patient2.healthProblems;
+  let mHealthProblems = appState.patient2.mHealthProblems;
+
   async function submitHandler() {
-    await axios.post(url, { 
-      fristName: appState.patient1.firstName, 
-      lastName: appState.patient1.lastName, 
-      password: appState.patient1.password, 
-      age: appState.patient1.age, 
-      bloodType: appState.patient1.bloodType, 
-      gender: appState.patient1.gender, 
-      email: appState.patient1.email, 
-      phoneNumber: appState.patient1.phoneNumber, 
-      National_ID: appState.patient1.nationalID,
-      chronicDisease: appState.patient2.chronicDisease,
-      mChronicDisease: appState.patient2.mChronicDisease,
-      healthProblems: appState.patient2.healthProblems,
-      mHealthProblems: appState.patient2.mHealthProblems,
-      surgery,
-      surgeryDate,
-      relative,
-      genetic,
-      geneticMed,
-     }).then((res) => {
-      console.log(res);
-    });
+    await axios
+      .post(url, {
+        fristName: appState.patient1.firstName,
+        lastName: appState.patient1.lastName,
+        age: appState.patient1.age,
+        bloodType: appState.patient1.bloodType,
+        gender: appState.patient1.gender,
+        email: appState.patient1.email,
+        password: appState.patient1.password,
+        phoneNumber: appState.patient1.phoneNumber,
+        National_ID: appState.patient1.nationalID,
+        chronic_Diseases: [{ name: chronicDisease, medicen: mChronicDisease }],
+        Health_problems: [{ name: healthProblems, medicen: mHealthProblems }],
+        Hereditary_diseases: [{ name: genetic, medicen: geneticMed }],
+        Surgical_operations: [{ name: surgery, date: surgeryDate }],
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
+        localStorage.setItem("pLastName", res.data.data.pationt.lastName);
+        localStorage.setItem("pEmail", res.data.data.pationt.email);
+        localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
+        localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+        localStorage.setItem("pAge", res.data.data.pationt.age);
+        localStorage.setItem("pGender", res.data.data.pationt.gender);
+        localStorage.setItem("pImage", res.data.data.pationt.image);
+        localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
+        localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
+        localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
+        localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
+        localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
+        localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 400);
+        navigate("/patient-page");
+      });
   }
 
   function goSecondPage() {
@@ -93,7 +112,7 @@ function PatientReg3() {
           <div className="page-body">
             <div className="p3-third-row">
               <div className="lhs">
-                <span>Any Genetic Diseases In Your Family ?</span>
+                <span>Do You Have Any Genetic Diseases ?</span>
                 <div>
                   <input type="radio" name="genetic-choice" value="yes" checked={pGenetic === "yes"} onChange={(e) => changePGenetic(e.target.value)} />
                   <span>Yes</span>
@@ -101,18 +120,7 @@ function PatientReg3() {
                   <span>No</span>
                 </div>
               </div>
-              <div className="rhs">
-                <span>Relative Relation :</span>
-                <select className="bloodtype-select" value={relative} onChange={(e) => setRelative(e.target.value)} name="relative" disabled={y}>
-                  <option value="Sibling">Sibling</option>
-                  <option value="Father">Father</option>
-                  <option value="Mother">Mother</option>
-                  <option value="Cousin">Cousin</option>
-                  <option value="Aunt">Aunt</option>
-                  <option value="Uncle">Uncle</option>
-                  <option value="Grandparent">Grandparent</option>
-                </select>
-              </div>
+              <div className="rhs"></div>
             </div>
             <div className="p3-fourth-row">
               <div className="lhs">

@@ -1,10 +1,15 @@
 import { useEffect } from "react";
+import CHTable from "../CHTable/CHTable";
+import SurgeryTable from "../SurgeryTable/SurgeryTable";
+import GeneticTable from "../../GeneticTable/GeneticTable";
+import DiagnosisTable from "../DiagnosisTable/DiagnosisTable";
 
-function DoctorPatientEdit() {
+function PatientPage() {
   useEffect(() => {
     document.title = "Health Recorder | Patient Page";
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="page">
       <div className="patient-sidebar">
@@ -69,7 +74,7 @@ function DoctorPatientEdit() {
             </div>
             <div className="information">
               <h5>Gender</h5>
-              <span>{localStorage.getItem("pGender")}</span>
+              <span>{localStorage.getItem("pGender") === "mail" ? "Male" : "Female"}</span>
               <h5>Contact Number</h5>
               <span>{`+${localStorage.getItem("pPhoneNumber")}`}</span>
             </div>
@@ -81,59 +86,28 @@ function DoctorPatientEdit() {
         </div>
         <div className="health" id="health">
           <h2 className="main-head">Health status</h2>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Chronic disease</th>
-                <th>Regular medicine</th>
-                <th>Any health problem</th>
-                <th>Regular medicine</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="table">
+            <div className="table-header">
+              <span>Chronic Disease</span>
+              <span>Regular Medicine</span>
+              <span>Any Health Problem</span>
+              <span>Regular Medicine</span>
+            </div>
+            <CHTable />
+          </div>
+            
         </div>
         <div className="surgical" id="surgical">
           <h2 className="main-head">Surgical history</h2>
           <table className="table">
             <thead>
               <tr>
-                <th colSpan="2">Surgery</th>
-                <th>Date</th>
+                <th >Surgery</th>
+                <th >Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colSpan="2"></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colSpan="2"></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colSpan="2"></td>
-                <td></td>
-              </tr>
+              <SurgeryTable />
             </tbody>
           </table>
         </div>
@@ -142,60 +116,28 @@ function DoctorPatientEdit() {
           <table className="table">
             <thead>
               <tr>
-                <th>Relative relation</th>
                 <th>Disease</th>
                 <th>Medicine</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              <GeneticTable />
             </tbody>
           </table>
         </div>
         <div className="diagnosis" id="diagnosis">
-          <h2 className="main-head">Diagnostic recording history</h2>
+          <h2 className="main-head">Diagnostic Recording History</h2>
           <table className="table">
             <thead>
               <tr>
-                <th>Doctor name</th>
-                <th>Depart</th>
                 <th>Diagnosis</th>
                 <th>Medicine</th>
+                <th>Doctor Name</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              <DiagnosisTable />
             </tbody>
           </table>
         </div>
@@ -204,4 +146,4 @@ function DoctorPatientEdit() {
   );
 }
 
-export default DoctorPatientEdit;
+export default PatientPage;

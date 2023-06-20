@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 import "./PatientPage.css";
+import CHTable from "../CHTable/CHTable";
+import SurgeryTable from "../SurgeryTable/SurgeryTable";
+import GeneticTable from "../../GeneticTable/GeneticTable";
+import DiagnosisTable from "../DiagnosisTable/DiagnosisTable";
 
 function PatientPage() {
   useEffect(() => {
@@ -56,7 +60,7 @@ function PatientPage() {
           <h2 className="main-head">Personal information</h2>
           <div className="box">
             <div className="profile">
-                <img src={localStorage.getItem("pImage")} alt="" />
+              <img src={localStorage.getItem("pImage")} alt="" />
 
               <div className="text">
                 <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("pLastName")}`}</h3>
@@ -71,7 +75,7 @@ function PatientPage() {
             </div>
             <div className="information">
               <h5>Gender</h5>
-              <span>{localStorage.getItem("pGender")}</span>
+              <span>{localStorage.getItem("pGender") === "mail" ? "Male" : "Female"}</span>
               <h5>Contact Number</h5>
               <span>{`+${localStorage.getItem("pPhoneNumber")}`}</span>
             </div>
@@ -82,124 +86,61 @@ function PatientPage() {
           </div>
         </div>
         <div className="health" id="health">
-            <h2 className="main-head">Health status</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Chronic disease</th>
-                        <th>Regular medicine</th>
-                        <th>Any health problem</th>
-                        <th>Regular medicine</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+          <h2 className="main-head">Health status</h2>
+          <div className="table">
+            <div className="table-header">
+              <span>Chronic Disease</span>
+              <span>Regular Medicine</span>
+              <span>Any Health Problem</span>
+              <span>Regular Medicine</span>
+            </div>
+            <CHTable />
+          </div>
+            
         </div>
         <div className="surgical" id="surgical">
-            <h2 className="main-head">Surgical history</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th colSpan="2">Surgery</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colSpan="2"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colSpan="2"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colSpan="2"></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+          <h2 className="main-head">Surgical history</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th >Surgery</th>
+                <th >Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <SurgeryTable />
+            </tbody>
+          </table>
         </div>
         <div className="genetic" id="genetic">
-            <h2 className="main-head">Genetic disease</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Relative relation</th>
-                        <th>Disease</th>
-                        <th>Medicine</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+          <h2 className="main-head">Genetic disease</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Disease</th>
+                <th>Medicine</th>
+              </tr>
+            </thead>
+            <tbody>
+              <GeneticTable />
+            </tbody>
+          </table>
         </div>
         <div className="diagnosis" id="diagnosis">
-            <h2 className="main-head">Diagnostic recording history</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Doctor name</th>
-                        <th>Depart</th>
-                        <th>Diagnosis</th>
-                        <th>Medicine</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+          <h2 className="main-head">Diagnostic Recording History</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Diagnosis</th>
+                <th>Medicine</th>
+                <th>Doctor Name</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <DiagnosisTable />
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

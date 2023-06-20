@@ -22,7 +22,7 @@ function PatientReg1() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("male");
-  const [bloodtype, setBloodtype] = useState("");
+  const [bloodType, setBloodtype] = useState("A+");
   const [nationalID, setNationalID] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -73,7 +73,7 @@ function PatientReg1() {
     }else if(nationalID.length != 14){
       setErrorMessage("Enter Correct National ID")
     } else {
-      appDispatch({type: "patient1", data: {firstName, lastName, email, password, phoneNumber, gender,  age, bloodtype, nationalID}})
+      appDispatch({type: "patient1", data: {firstName, lastName, email, password, phoneNumber, gender, age, bloodType, nationalID}})
       setErrorMessage("");
       navigate("/patient-reg2");
     }
@@ -112,9 +112,9 @@ function PatientReg1() {
               <div className="rhs">
                 <span>Gender :</span>
                 <div>
-                  <input type="radio" name="gender" value="male" checked={gender === "male"} onChange={(e) => setGender(e.target.value)} />
+                  <input type="radio" name="gender" value="mail" checked={gender === "mail"} onChange={(e) => setGender(e.target.value)} />
                   <span>Male</span>
-                  <input type="radio" name="gender" value="female" checked={gender === "female"} onChange={(e) => setGender(e.target.value)} />
+                  <input type="radio" name="gender" value="femail" checked={gender === "femail"} onChange={(e) => setGender(e.target.value)} />
                   <span>Female</span>
                 </div>
               </div>
@@ -122,16 +122,16 @@ function PatientReg1() {
             <div className="p1-fifth-row">
               <div className="lhs">
                 <span>Age :</span>
-                <input value={age} onChange={(e) => setAge(e.target.value)} type="number" className="main-input" />
+                <input value={age} onChange={(e) => setAge(e.target.value)} type="text" className="main-input" />
               </div>
               <div className="rhs">
                 <span>National ID</span>
-                <input value={nationalID} onChange={(e) => setNationalID(e.target.value)} type="number" className="main-input" />
+                <input value={nationalID} onChange={(e) => setNationalID(e.target.value)} type="text" className="main-input" />
               </div>
             </div>
             <div className="sixth-row">
               <span>Blood Type:</span>
-              <select value={bloodtype} className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
+              <select value={bloodType} className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>

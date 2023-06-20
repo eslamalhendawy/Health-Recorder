@@ -14,7 +14,7 @@ function DoctorReg() {
   const regCharectars = /^[A-Za-z\s]*$/;
   const regNumbers = /^[0-9]+$/;
   const regEmail = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
-  const url = "https://nice-rose-yak-ring.cyclic.app/api/v1/doctors";
+  const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/doctors";
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -59,7 +59,7 @@ function DoctorReg() {
     } else {
       setErrorMessage("");
       await axios
-        .post(url, { firstName, lastName, email, password, department, phoneNumber, address, age })
+        .post(url, { firstName, lastName, email, password, department, phoneNumber, address, age, gender: "mail"})
         .then((res) => {
           console.log(res);
           localStorage.setItem("userFirstName", res.data.data.doctor.firstName);
@@ -68,6 +68,9 @@ function DoctorReg() {
           localStorage.setItem("doctorDepartment", res.data.data.doctor.department);
           localStorage.setItem("doctorPhone", res.data.data.doctor.phoneNumber);
           localStorage.setItem("doctorAddress", res.data.data.doctor.address);
+          localStorage.setItem("doctorImage", res.data.data.doctor.image);
+          localStorage.setItem("doctorID", res.data.data.doctor._id);
+          localStorage.setItem("patientList", JSON.stringify(res.data.data.doctor.pId));
           setTimeout(() => {
             window.location.reload(true);
           }, 400);

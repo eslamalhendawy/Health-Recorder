@@ -45,7 +45,7 @@ function PatientLogin() {
         localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
         localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
         localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
-        localStorage.setItem("pSurgury", JSON.stringify(res.data.data.pationt.Surgical_operations));
+        localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
         localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
         localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
         setTimeout(() => {
