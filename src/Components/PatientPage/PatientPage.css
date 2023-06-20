@@ -33,6 +33,7 @@
 }
 .patient-sidebar .user-information {
   margin: 40px auto 60px;
+  position: relative;
 }
 .patient-sidebar .user-information img {
   width: 150px;

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import PatientCard from "../PatientCard/PatientCard";
+import Modal from "../Modal/Modal";
 import "./DoctorPage.css";
 
 function DoctorPage() {
@@ -12,37 +13,39 @@ function DoctorPage() {
   const navigate = useNavigate();
 
   async function clickHandler() {
-    await axios.patch(`https://eslamsaber8-healthrecorder.onrender.com/api/v1/pId/${localStorage.getItem("doctorID")}`, {pId: [patientID]})
-    .then((res) => {
-      setPatientList(localStorage.setItem("patientList", JSON.stringify(res.data.data.doctor.pId)));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    await axios.get(`https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/${patientID}`)
-    .then((res) => {
-      localStorage.setItem("pFirstName", res.data.data.pationt.fristName);
-      localStorage.setItem("pLastName", res.data.data.pationt.lastName);
-      localStorage.setItem("pAge", res.data.data.pationt.age);
-      localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
-      localStorage.setItem("pGender", res.data.data.pationt.gender);
-      localStorage.setItem("pEmail", res.data.data.pationt.email);
-      localStorage.setItem("pImage", res.data.data.pationt.image);
-      localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
-      localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
-      localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
-      localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
-      localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
-      localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
-      localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
-      setTimeout(() => {
-        window.location.reload(true);
-      }, 400);
-      navigate("/patient-edit");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    await axios
+      .patch(`https://eslamsaber8-healthrecorder.onrender.com/api/v1/pId/${localStorage.getItem("doctorID")}`, { pId: [patientID] })
+      .then((res) => {
+        setPatientList(localStorage.setItem("patientList", JSON.stringify(res.data.data.doctor.pId)));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    await axios
+      .get(`https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/${patientID}`)
+      .then((res) => {
+        localStorage.setItem("pFirstName", res.data.data.pationt.fristName);
+        localStorage.setItem("pLastName", res.data.data.pationt.lastName);
+        localStorage.setItem("pAge", res.data.data.pationt.age);
+        localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
+        localStorage.setItem("pGender", res.data.data.pationt.gender);
+        localStorage.setItem("pEmail", res.data.data.pationt.email);
+        localStorage.setItem("pImage", res.data.data.pationt.image);
+        localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
+        localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+        localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
+        localStorage.setItem("pGenetic", JSON.stringify(res.data.data.pationt.Hereditary_diseases));
+        localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
+        localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
+        localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 400);
+        navigate("/patient-edit");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   useEffect(() => {
@@ -55,6 +58,7 @@ function DoctorPage() {
       <div className="sidebar">
         <div className="doc-information">
           <img src={localStorage.getItem("doctorImage")} alt="Doctor's Photo" />
+          <Modal />
           <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("userLastName")}`}</h3>
           <span>{localStorage.getItem("doctorDepartment")}</span>
           <span>{`+${localStorage.getItem("doctorPhone")}`}</span>
@@ -76,8 +80,8 @@ function DoctorPage() {
         </div>
 
         <div className="doctor-page-container">
-          {patientList.map((id,index) => {
-            return <PatientCard id={id} key={index} />
+          {patientList.map((id, index) => {
+            return <PatientCard id={id} key={index} />;
           })}
         </div>
       </div>

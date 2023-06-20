@@ -16,6 +16,9 @@ function PatientPage() {
       <div className="patient-sidebar">
         <div className="user-information">
           <img src={localStorage.getItem("pImage")} alt="" />
+          <span className="edit-button">
+            <i className="fa-solid fa-pen"></i>
+          </span>
           <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("pLastName")}`}</h3>
           <span>{localStorage.getItem("pEmail")}</span>
         </div>

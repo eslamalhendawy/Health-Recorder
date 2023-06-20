@@ -27,6 +27,11 @@ a {
 .sidebar h2 img {
   max-width: 100%;
 }
+
+.doc-information{
+  position: relative;
+}
+
 .sidebar .doc-information {
   margin: 40px auto;
 }
@@ -71,10 +76,9 @@ a {
 .doctor-header input {
   padding: 10px 50px;
   background-color: #d9d9d9;
-  border: 1px solid transparent;
+  border: none;
   border-radius: 10px 0 0 10px;
   width: 350px;
-  position: relative;
 }
 
 .doctor-header input:focus{
@@ -146,4 +150,27 @@ a {
 .search-button{
   border: none;
   cursor: pointer;
+}
+
+.edit-button{
+  position: absolute;
+  top: 125px;
+  right: 60px;
+  color: #6da5c0;
+  background-color: white;
+  border-radius: 100%;
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  color: #294D61;
+  
+}
+
+.edit-button i{
+  font-size: 18px;
+  transition: 0.3s;
 }
