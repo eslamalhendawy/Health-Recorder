@@ -24,6 +24,7 @@ function DoctorReg() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [age, setAge] = useState("");
+  const [gender, setGender] = useState("mail");
   const [errorMessage, setErrorMessage] = useState("");
   const [initialType, setType1] = useState("password");
   const [initialClass, setClass1] = useState("fa-solid fa-eye pass-eye");
@@ -59,7 +60,7 @@ function DoctorReg() {
     } else {
       setErrorMessage("");
       await axios
-        .post(url, { firstName, lastName, email, password, department, phoneNumber, address, age, gender: "mail"})
+        .post(url, { firstName, lastName, email, password, department, phoneNumber, address, age, gender})
         .then((res) => {
           console.log(res);
           localStorage.setItem("userFirstName", res.data.data.doctor.firstName);
@@ -136,11 +137,20 @@ function DoctorReg() {
                   <input onChange={(e) => setAddress(e.target.value)} type="text" id="address" value={address} className="main-input" />
                 </div>
                 <div className="rhs">
-                  <span>Age :</span>
-                  <input value={age} type="number" onChange={(e) => setAge(e.target.value)} className="main-input" />
+                <span>Gender :</span>
+                <div>
+                  <input type="radio" name="gender" value="mail" checked={gender === "mail"} onChange={(e) => setGender(e.target.value)} />
+                  <span>Male</span>
+                  <input type="radio" name="gender" value="femail" checked={gender === "femail"} onChange={(e) => setGender(e.target.value)} />
+                  <span>Female</span>
+                </div>
                 </div>
               </div>
               <div className="fifth-row">
+                <span>Age :</span>
+                <input value={age} type="number" onChange={(e) => setAge(e.target.value)} className="main-input" />
+              </div>
+              <div className="sixth-row">
                 <span>{errorMessage}</span>
                 <button className="doctor-submit-button" onClick={submitHandler}>
                   Register

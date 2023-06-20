@@ -21,7 +21,7 @@ function PatientReg1() {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState("male");
+  const [gender, setGender] = useState("mail");
   const [bloodType, setBloodtype] = useState("A+");
   const [nationalID, setNationalID] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -129,7 +129,7 @@ function PatientReg1() {
                 <input value={nationalID} onChange={(e) => setNationalID(e.target.value)} type="text" className="main-input" />
               </div>
             </div>
-            <div className="sixth-row">
+            <div className="p1-sixth-row">
               <span>Blood Type:</span>
               <select value={bloodType} className="bloodtype-select" onChange={(e) => setBloodtype(e.target.value)} name="bloodtype">
                 <option value="A+">A+</option>
@@ -140,9 +140,10 @@ function PatientReg1() {
                 <option value="AB-">AB-</option>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
+                <option value="don't know">Don&apos;t  Know</option>
               </select>
             </div>
-            <div className="seventh-row">
+            <div className="p1-seventh-row">
               <span>{errorMessage}</span>
               <button onClick={goSecondPage} className="first-button">
                 Next

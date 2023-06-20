@@ -100,6 +100,14 @@
   flex: 1;
 }
 
+.doc-fourth-row .rhs input{
+  margin-right: 10px;
+}
+
+.doc-fourth-row .rhs span{
+  margin-right: 18px;
+}
+
 .doc-fourth-row span{
   margin-bottom: 8px;
 }
@@ -116,11 +124,27 @@
 
 .fifth-row{
   display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-size: 18px;
+  align-items: start;
+}
+
+.fifth-row span{
+  margin-bottom: 8px;
+}
+
+.fifth-row input[type ="number"]{
+  width: 50%;
+}
+
+.sixth-row{
+  display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-.fifth-row span{
+.sixth-row span{
   position: absolute;
   left: 300px;
   font-size: 18px;

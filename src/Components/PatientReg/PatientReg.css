@@ -341,23 +341,23 @@
   outline: none;
 }
 
-.sixth-row {
+.p1-sixth-row {
   margin-bottom: 15px;
   font-size: 18px;
 }
 
-.sixth-row span {
+.p1-sixth-row span {
   display: block;
   margin-bottom: 8px;
 }
 
-.seventh-row{
+.p1-seventh-row{
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-.seventh-row span{
+.p1-seventh-row span{
   position: absolute;
   left: 275px;
   font-size: 18px;
