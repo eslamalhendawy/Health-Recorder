@@ -20,10 +20,10 @@ function PatientReg3() {
 
   const [pSurgury, changePSurgery] = useState("no");
   const [pGenetic, changePGenetic] = useState("no");
-  const [surgery, setSurgery] = useState(" ");
-  const [surgeryDate, setSurgeryDate] = useState(" ");
-  const [genetic, setGenetic] = useState(" ");
-  const [geneticMed, setGeneticMed] = useState(" ");
+  const [surgery, setSurgery] = useState("");
+  const [surgeryDate, setSurgeryDate] = useState("");
+  const [genetic, setGenetic] = useState("");
+  const [geneticMed, setGeneticMed] = useState("");
 
   if (pSurgury === "no") {
     x = true;
@@ -33,49 +33,63 @@ function PatientReg3() {
     y = true;
   }
 
-  let chronicDisease = appState.patient2.chronicDisease;
-  let mChronicDisease = appState.patient2.mChronicDisease;
-  let healthProblems = appState.patient2.healthProblems;
-  let mHealthProblems = appState.patient2.mHealthProblems;
+  const chronicDisease = appState.patient2.chronicDisease;
+  const mChronicDisease = appState.patient2.mChronicDisease;
+  const healthProblems = appState.patient2.healthProblems;
+  const mHealthProblems = appState.patient2.mHealthProblems;
+
+  let newPatient = {
+    fristName: appState.patient1.firstName,
+    lastName: appState.patient1.lastName,
+    age: appState.patient1.age,
+    bloodType: appState.patient1.bloodType,
+    gender: appState.patient1.gender,
+    email: appState.patient1.email,
+    password: appState.patient1.password,
+    phoneNumber: appState.patient1.phoneNumber,
+    National_ID: appState.patient1.nationalID,
+    chronic_Diseases: [{ name: chronicDisease, medicen: mChronicDisease }],
+    Health_problems: [{ name: healthProblems, medicen: mHealthProblems }],
+    Hereditary_diseases: [{ name: genetic, medicen: geneticMed }],
+    Surgical_operations: [{ name: surgery, date: surgeryDate }],
+  };
+
+  
 
   async function submitHandler() {
-    await axios
-      .post(url, {
-        fristName: appState.patient1.firstName,
-        lastName: appState.patient1.lastName,
-        age: appState.patient1.age,
-        bloodType: appState.patient1.bloodType,
-        gender: appState.patient1.gender,
-        email: appState.patient1.email,
-        password: appState.patient1.password,
-        phoneNumber: appState.patient1.phoneNumber,
-        National_ID: appState.patient1.nationalID,
-        chronic_Diseases: [{ name: chronicDisease, medicen: mChronicDisease }],
-        Health_problems: [{ name: healthProblems, medicen: mHealthProblems }],
-        Hereditary_diseases: [{ name: genetic, medicen: geneticMed }],
-        Surgical_operations: [{ name: surgery, date: surgeryDate }],
-      })
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
-        localStorage.setItem("pLastName", res.data.data.pationt.lastName);
-        localStorage.setItem("pEmail", res.data.data.pationt.email);
-        localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
-        localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
-        localStorage.setItem("pAge", res.data.data.pationt.age);
-        localStorage.setItem("pGender", res.data.data.pationt.gender);
-        localStorage.setItem("pImage", res.data.data.pationt.image);
-        localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
-        localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
-        localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
-        localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
-        localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
-        localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
-        setTimeout(() => {
-          window.location.reload(true);
-        }, 400);
-        navigate("/patient-page");
-      });
+    if (chronicDisease === "") {
+      delete newPatient.chronic_Diseases;
+    }
+    if (healthProblems === "") {
+      delete newPatient.Health_problems;
+    }
+    if (genetic === "") {
+      delete newPatient.Hereditary_diseases;
+    }
+    if (surgery === "") {
+      delete newPatient.Surgical_operations;
+    }
+    await axios.post(url, newPatient).then((res) => {
+      console.log(res);
+      localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
+      localStorage.setItem("pLastName", res.data.data.pationt.lastName);
+      localStorage.setItem("pEmail", res.data.data.pationt.email);
+      localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
+      localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+      localStorage.setItem("pAge", res.data.data.pationt.age);
+      localStorage.setItem("pGender", res.data.data.pationt.gender);
+      localStorage.setItem("pImage", res.data.data.pationt.image);
+      localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
+      localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
+      localStorage.setItem("pGenetic", JSON.stringify(res.data.data.pationt.Hereditary_diseases));
+      localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
+      localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
+      localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 400);
+      navigate("/patient-page");
+    });
   }
 
   function goSecondPage() {

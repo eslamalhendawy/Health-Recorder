@@ -206,7 +206,7 @@
 .table .table-body span {
   background-color: #fff;
   border-bottom: 1px solid #d9d9d9;
-  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
   display: block;
   width: 25%;
   padding: 50px;
