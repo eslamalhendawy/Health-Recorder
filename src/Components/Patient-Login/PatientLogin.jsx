@@ -39,6 +39,7 @@ function PatientLogin() {
         localStorage.setItem("pEmail", res.data.data.pationt.email);
         localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
         localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+        localStorage.setItem("pID", res.data.data.pationt._id);
         localStorage.setItem("pAge", res.data.data.pationt.age);
         localStorage.setItem("pGender", res.data.data.pationt.gender);
         localStorage.setItem("pImage", res.data.data.pationt.image);

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import PatientCard from "../PatientCard/PatientCard";
-import Modal from "../Modal/Modal";
+import DoctorModal from "../DoctorModal/DoctorModal";
 import "./DoctorPage.css";
 
 function DoctorPage() {
@@ -58,7 +58,7 @@ function DoctorPage() {
       <div className="sidebar">
         <div className="doc-information">
           <img src={localStorage.getItem("doctorImage")} alt="Doctor's Photo" />
-          <Modal />
+          <DoctorModal />
           <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("userLastName")}`}</h3>
           <span>{localStorage.getItem("doctorDepartment")}</span>
           <span>{`+${localStorage.getItem("doctorPhone")}`}</span>

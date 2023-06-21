@@ -4,6 +4,7 @@ import CHTable from "../CHTable/CHTable";
 import SurgeryTable from "../SurgeryTable/SurgeryTable";
 import GeneticTable from "../GeneticTable/GeneticTable"
 import DiagnosisTable from "../DiagnosisTable/DiagnosisTable";
+import PatientModal from "../PatientModal/PatientModal"
 
 function PatientPage() {
   useEffect(() => {
@@ -16,9 +17,7 @@ function PatientPage() {
       <div className="patient-sidebar">
         <div className="user-information">
           <img src={localStorage.getItem("pImage")} alt="" />
-          <span className="edit-button">
-            <i className="fa-solid fa-pen"></i>
-          </span>
+          <PatientModal />
           <h3>{`${localStorage.getItem("userFirstName")} ${localStorage.getItem("pLastName")}`}</h3>
           <span>{localStorage.getItem("pEmail")}</span>
         </div>
