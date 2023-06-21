@@ -3,8 +3,16 @@ import CHTable from "../CHTable/CHTable";
 import SurgeryTable from "../SurgeryTable/SurgeryTable";
 import GeneticTable from "../GeneticTable/GeneticTable";
 import DiagnosisTable from "../DiagnosisTable/DiagnosisTable";
+import DiagnosticModal from "../DiagnosticModal/DiagnosticModal";
+import GeneticModal from "../GeneticModal/GeneticModal";
+import SurgeryModal from "../SurgeryModal/SurgeryModal";
+
+import "../DiagnosticModal/DiagnosticModal.css";
 
 function PatientPage() {
+  const patientID = localStorage.getItem("pNationalID");
+  const url = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/update/${patientID}`;
+
   useEffect(() => {
     document.title = "Health Recorder | Patient Page";
     window.scrollTo(0, 0);
@@ -95,15 +103,15 @@ function PatientPage() {
             </div>
             <CHTable />
           </div>
-            
         </div>
         <div className="surgical" id="surgical">
+          <SurgeryModal />
           <h2 className="main-head">Surgical history</h2>
           <table className="table">
             <thead>
               <tr>
-                <th >Surgery</th>
-                <th >Date</th>
+                <th>Surgery</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -112,6 +120,7 @@ function PatientPage() {
           </table>
         </div>
         <div className="genetic" id="genetic">
+          <GeneticModal />
           <h2 className="main-head">Genetic disease</h2>
           <table className="table">
             <thead>
@@ -126,6 +135,7 @@ function PatientPage() {
           </table>
         </div>
         <div className="diagnosis" id="diagnosis">
+          <DiagnosticModal />
           <h2 className="main-head">Diagnostic Recording History</h2>
           <table className="table">
             <thead>

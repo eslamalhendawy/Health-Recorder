@@ -8,6 +8,8 @@
 .page {
   display: flex;
   background-color: #fff;
+  position: relative;
+  z-index: 0;
 }
 
 .patient-sidebar {
@@ -231,6 +233,7 @@
 .surgical,
 .genetic,
 .diagnosis {
+  position: relative;
   text-align: center;
   margin: var(--table-margin);
   border-radius: var(--table-radius);

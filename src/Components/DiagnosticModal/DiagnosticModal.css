@@ -1,0 +1,138 @@
+.diagnosis-edit {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  font-size: 17px;
+  color: white;
+  cursor: pointer;
+}
+
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+.modal-content {
+  color: black;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  width: 600px;
+  border-radius: 15px;
+  z-index: 2;
+}
+
+.modal-content .modal-header {
+  margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+  font-size: 25px;
+  cursor: pointer;
+  color: rgb(233, 49, 49);
+}
+
+.modal-content input[type="file"] {
+  display: none;
+}
+
+.modal-content .row {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 50px;
+}
+
+.modal-content .row .lhs,
+.modal-content .row .rhs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-content: center;
+}
+
+.modal-content .row .edit-span {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-content .row.second-row .diagnosis-second-row{
+    margin-bottom: 30px;
+}
+
+.modal-content .row.third-row .upload-button {
+  display: block;
+  font-size: 15px;
+  padding: 12px 17px;
+  width: 100px;
+  background-color: #6da5c0;
+  transition: 0.3s;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.modal-content .row.third-row {
+  position: relative;
+}
+
+.modal-content .row.third-row .upload-button:hover {
+  background-color: #294d61;
+}
+
+.modal-content .row.third-row .submit-diagnosis {
+  width: 100px;
+  position: absolute;
+  bottom: -25px;
+  right: 30px;
+  font-size: 15px;
+  padding: 12px 17px;
+  background-color: #6da5c0;
+  transition: 0.3s;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.modal-content .row.third-row .submit-diagnosis:hover {
+  background-color: #294d61;
+}
+
+.modal-content .row.third-row .rhs span {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  translate: -50% -50%;
+  font-size: 20px;
+  color: rgb(233, 49, 49);
+  font-weight: 600;
+}

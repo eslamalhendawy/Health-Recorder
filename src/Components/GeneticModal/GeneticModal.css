@@ -1,0 +1,8 @@
+.genetic-edit {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 17px;
+    color: white;
+    cursor: pointer;
+  }

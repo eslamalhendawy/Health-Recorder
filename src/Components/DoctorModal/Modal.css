@@ -50,7 +50,7 @@ body.active-modal {
 }
 
 .modal-content .row{
-    margin-bottom: 18px;
+    margin-bottom: 30px;
     display: flex;
     gap: 50px;
 }
