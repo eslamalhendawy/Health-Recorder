@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import "./PatientPage.css";
-import CHTable from "../CHTable/CHTable";
 import SurgeryTable from "../SurgeryTable/SurgeryTable";
-import GeneticTable from "../GeneticTable/GeneticTable"
+import GeneticTable from "../GeneticTable/GeneticTable";
 import DiagnosisTable from "../DiagnosisTable/DiagnosisTable";
-import PatientModal from "../PatientModal/PatientModal"
+import PatientModal from "../PatientModal/PatientModal";
 
 function PatientPage() {
   useEffect(() => {
     document.title = "Health Recorder | Patient Page";
     window.scrollTo(0, 0);
   }, []);
+
+  const chronic = JSON.parse(localStorage.getItem("pChronic"));
+  const healthProblems = JSON.parse(localStorage.getItem("pHealthProblems"));
 
   return (
     <div className="page">
@@ -59,7 +61,7 @@ function PatientPage() {
           <h2>Profile</h2>
         </div>
         <div className="person" id="person">
-          <h2 className="main-head">Personal information</h2>
+          <h2 className="main-head">Personal Information</h2>
           <div className="box">
             <div className="profile">
               <img src={localStorage.getItem("pImage")} alt="" />
@@ -88,25 +90,57 @@ function PatientPage() {
           </div>
         </div>
         <div className="health" id="health">
-          <h2 className="main-head">Health status</h2>
-          <div className="table">
-            <div className="table-header">
-              <span>Chronic Disease</span>
-              <span>Regular Medicine</span>
-              <span>Any Health Problem</span>
-              <span>Regular Medicine</span>
-            </div>
-            <CHTable />
-          </div>
-            
+          <h2 className="main-head">Health Status</h2>
+          <table className="table">
+            <tbody>
+              <tr>
+                <th>Chronic Disease</th>
+                <th>Regular Medicine</th>
+              </tr>
+              {chronic.length === 0 ? (
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ) : (
+                chronic.map((data, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{data.name}</td>
+                      <td>{data.medicen}</td>
+                    </tr>
+                  );
+                })
+              )}
+              <tr>
+                <th>Health Problems</th>
+                <th>Medication</th>
+              </tr>
+              {healthProblems.length === 0 ? (
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ) : (
+                healthProblems.map((data, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{data.name}</td>
+                      <td>{data.medicen}</td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
         </div>
         <div className="surgical" id="surgical">
-          <h2 className="main-head">Surgical history</h2>
+          <h2 className="main-head">Surgical History</h2>
           <table className="table">
             <thead>
               <tr>
-                <th >Surgery</th>
-                <th >Date</th>
+                <th>Surgery</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -115,7 +149,7 @@ function PatientPage() {
           </table>
         </div>
         <div className="genetic" id="genetic">
-          <h2 className="main-head">Genetic disease</h2>
+          <h2 className="main-head">Genetic Disease</h2>
           <table className="table">
             <thead>
               <tr>

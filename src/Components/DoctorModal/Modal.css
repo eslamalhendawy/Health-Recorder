@@ -27,6 +27,7 @@ body.active-modal {
     border-radius: 3px;
     width: 600px;
     border-radius: 15px;
+    background-color: white;
 }
 
 .modal-content .modal-header{

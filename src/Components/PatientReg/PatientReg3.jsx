@@ -57,16 +57,16 @@ function PatientReg3() {
   
 
   async function submitHandler() {
-    if (chronicDisease === "") {
+    if (chronicDisease === "" || mChronicDisease === "") {
       delete newPatient.chronic_Diseases;
     }
-    if (healthProblems === "") {
+    if (healthProblems === "" || mHealthProblems === "") {
       delete newPatient.Health_problems;
     }
-    if (genetic === "") {
+    if (genetic === "" || geneticMed === "") {
       delete newPatient.Hereditary_diseases;
     }
-    if (surgery === "") {
+    if (surgery === "" || surgeryDate === "") {
       delete newPatient.Surgical_operations;
     }
     await axios.post(url, newPatient).then((res) => {

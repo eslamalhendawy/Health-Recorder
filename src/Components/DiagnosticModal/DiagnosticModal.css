@@ -39,6 +39,7 @@ body.active-modal {
   width: 600px;
   border-radius: 15px;
   z-index: 2;
+  background-color: white;
 }
 
 .modal-content .modal-header {
