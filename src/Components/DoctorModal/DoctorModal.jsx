@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Modal.css";
 import axios from "axios";
 
@@ -6,14 +6,21 @@ function DoctorModal() {
   const [phoneNumber, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState();
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const inputRef = useRef(null);
 
+  const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const doctorID = localStorage.getItem("doctorID");
-  const imageURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/update_doc_picture/${doctorID}`;
   const dataURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/doctors/${doctorID}`;
+  const imageURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/update_doc_picture/${doctorID}`;
   const passwordURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/updateDo_pass/${doctorID}`;
+
+  const triggerFile = () => {
+    inputRef.current.click();
+  };
 
   const clickHandler = () => {
     if (modal === true) {
@@ -30,18 +37,28 @@ function DoctorModal() {
   };
 
   async function submitHandler() {
-    if (address === "") {
-      delete newData.address;
+    if (!regEmail.test(email)) {
+      setErrorMessage("Enter Correct Email");
+    } else {
+      setErrorMessage("");
     }
     if (email === "") {
       delete newData.email;
+      setErrorMessage("");
+    }
+    if (address === "") {
+      delete newData.address;
     }
     if (phoneNumber === "") {
       delete newData.phoneNumber;
     }
-    if (password != "") {
-      await axios.patch(passwordURL, {password}).then((res) => console.log(res)).catch((e) => console.log(e));
-    }
+
+    // if (password != "") {
+    //   await axios
+    //     .patch(passwordURL, { password })
+    //     .then((res) => console.log(res))
+    //     .catch((e) => console.log(e));
+    // }
     // const formData = new FormData();
     // formData.append("image", image);
     // await axios.patch(url , formData)
@@ -51,7 +68,6 @@ function DoctorModal() {
     // .catch((e) => {
     //     console.log(e);
     // })
-
     await axios
       .patch(dataURL, newData)
       .then((res) => {
@@ -82,17 +98,42 @@ function DoctorModal() {
         <div className="modal">
           <div className="overlay" onClick={clickHandler}></div>
           <div className="modal-content">
-            <h2>Choose Image</h2>
-            <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} />
-            <h2>Phone Number :</h2>
-            <input type="text" onChange={(e) => setPhone(e.target.value)} />
-            <h2>Address :</h2>
-            <input type="text" onChange={(e) => setAddress(e.target.value)} />
-            <h2>Email :</h2>
-            <input type="text" onChange={(e) => setEmail(e.target.value)} />
-            <h2>Password :</h2>
-            <input type="text" onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={submitHandler}>Submit</button>
+            <h2 className="modal-header">Only Fill The Data You Wish To Change</h2>
+            <div className="row first-row">
+              <div className="lhs">
+                <span className="edit-span">Email :</span>
+                <input className="main-input" type="text" onChange={(e) => setEmail(e.target.value)} />
+              </div>
+              <div className="rhs">
+                <span className="edit-span">Password :</span>
+                <input className="main-input" type="text" onChange={(e) => setPassword(e.target.value)} />
+              </div>
+            </div>
+            <div className="row second-row">
+              <div className="lhs">
+                <span className="edit-span">Address:</span>
+                <input className="main-input" type="text" onChange={(e) => setAddress(e.target.value)} />
+              </div>
+              <div className="rhs">
+                <span className="edit-span">Phone Number :</span>
+                <input className="main-input" type="number" onChange={(e) => setPhone(e.target.value)} />
+              </div>
+            </div>
+            <div className="row third-row">
+              <div className="lhs">
+                <span className="edit-span">Choose Image:</span>
+                <input type="file" name="image" ref={inputRef} onChange={(e) => setImage(e.target.files[0])} />
+                <button className="upload-button" onClick={triggerFile}>
+                  Upload
+                </button>
+              </div>
+              <div className="rhs">
+                <span>{errorMessage}</span>
+                <button className="submit-changes" onClick={submitHandler}>
+                  Submit
+                </button>
+              </div>
+            </div>
             <i className="fa-solid fa-xmark close-modal" onClick={clickHandler}></i>
           </div>
         </div>

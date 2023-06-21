@@ -109,3 +109,13 @@ body.active-modal {
 .modal-content .row.third-row .submit-changes:hover {
     background-color: #294D61;
 }
+
+.modal-content .row.third-row .rhs span{
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    translate: -50% -50%;
+    font-size: 20px;
+    color: rgb(233, 49, 49);
+    font-weight: 600;
+}

@@ -4,12 +4,14 @@ import axios from "axios";
 function DoctorModal() {
   const [phoneNumber, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
+  const [bloodType, setBloodType] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [password, setPassword] = useState("");
   const [image, setImage] = useState();
-  const [bloodType, setBloodType] = useState("A+");
   const inputRef = useRef(null);
 
+  const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const patientID = localStorage.getItem("pID");
   const dataURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/${patientID}`;
   const imageURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/update_image/${patientID}`;
@@ -34,8 +36,14 @@ function DoctorModal() {
   };
 
   async function submitHandler() {
+    if (!regEmail.test(email)) {
+      setErrorMessage("Enter Correct Email");
+    } else {
+      setErrorMessage("");
+    }
     if (email === "") {
       delete newData.email;
+      setErrorMessage("");
     }
     if (phoneNumber === "") {
       delete newData.phoneNumber;
@@ -46,7 +54,6 @@ function DoctorModal() {
     // if (password != "") {
     //   await axios.patch(passwordURL, {password}).then((res) => console.log(res)).catch((e) => console.log(e));
     // }
-    console.log(newData);
     // const formData = new FormData();
     // formData.append("image", image);
     // await axios.patch(url , formData)
@@ -103,6 +110,7 @@ function DoctorModal() {
               <div className="lhs">
                 <span className="edit-span">Blood Type:</span>
                 <select value={bloodType} className="bloodtype-select" onChange={(e) => setBloodType(e.target.value)} name="bloodtype">
+                  <option value=""></option>
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
                   <option value="B+">B+</option>
@@ -127,10 +135,12 @@ function DoctorModal() {
                 </button>
               </div>
               <div className="rhs">
-                <button className="submit-changes" onClick={submitHandler}>Submit</button>
+                <span>{errorMessage}</span>
+                <button className="submit-changes" onClick={submitHandler}>
+                  Submit
+                </button>
               </div>
             </div>
-
             <i className="fa-solid fa-xmark close-modal" onClick={clickHandler}></i>
           </div>
         </div>
