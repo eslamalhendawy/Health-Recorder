@@ -7,7 +7,7 @@ function DoctorModal() {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [modal, setModal] = useState(false);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef(null);
@@ -53,21 +53,26 @@ function DoctorModal() {
       delete newData.phoneNumber;
     }
 
-    // if (password != "") {
-    //   await axios
-    //     .patch(passwordURL, { password })
-    //     .then((res) => console.log(res))
-    //     .catch((e) => console.log(e));
-    // }
-    // const formData = new FormData();
-    // formData.append("image", image);
-    // await axios.patch(url , formData)
-    // .then((res) => {
-    //     console.log(res);
-    // })
-    // .catch((e) => {
-    //     console.log(e);
-    // })
+    if (password.length < 8 && password != 0) {
+      setErrorMessage("Password Must Be 8 Charrecters Or Longer");
+    } else if (password.length >= 8) {
+      await axios
+        .patch(passwordURL, { password })
+        .then((res) => console.log(res))
+        .catch((e) => console.log(e));
+    }
+
+    if (image != "") {
+      const formData = new FormData();
+      formData.append("image", image);
+      await axios
+        .patch(imageURL, formData)
+        .then((res) => {
+          localStorage.setItem("doctorImage", res.data.data.pationt.image);
+        })
+        .catch((e) => console.log(e));
+    }
+
     await axios
       .patch(dataURL, newData)
       .then((res) => {
