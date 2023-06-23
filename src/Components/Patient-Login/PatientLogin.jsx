@@ -49,6 +49,7 @@ function PatientLogin() {
         localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
         localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
         localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+        localStorage.setItem("pXray", JSON.stringify(res.data.data.pationt.x_ray));
         setTimeout(() => {
           window.location.reload(true);
         }, 400);
@@ -78,7 +79,7 @@ function PatientLogin() {
               <Link className="clickable" to="/patient-reg/patient-reg1">
                 Create Account
               </Link>
-              <a>Forgot Password?</a>
+              <Link to="/patient-password">Forgot Password?</Link>
             </div>
           </div>
         </div>

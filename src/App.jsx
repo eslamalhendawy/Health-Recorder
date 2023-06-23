@@ -18,6 +18,8 @@ import PatientReg3 from "./Components/PatientReg/PatientReg3";
 import DoctorPage from "./Components/DoctorPage/DoctorPage";
 import PatientPage from "./Components/PatientPage/PatientPage";
 import DoctorPatientEdit from "./Components/DoctorPatientEdit/DoctorPatientEdit";
+import ForgetPasswordDoctor from "./Components/ForgetPasswordDoctor/ForgetPasswordDoctor";
+import ForgetPasswordPatient from "./Components/ForgetPasswordPatient/ForgetPasswordPatient";
 
 function App() {
   const initialState = {
@@ -76,6 +78,8 @@ function App() {
             <Route exact path="/doctor-page" element={<DoctorPage />} />
             <Route exact path="/patient-page" element={<PatientPage />} />
             <Route exact path="/patient-edit" element={<DoctorPatientEdit />} />
+            <Route exact path="/doctor-password" element={<ForgetPasswordDoctor />} />
+            <Route exact path="/patient-password" element={<ForgetPasswordPatient />} />
           </Routes>
           <Footer />
         </BrowserRouter>

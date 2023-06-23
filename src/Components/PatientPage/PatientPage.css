@@ -179,7 +179,7 @@
   width: 100%;
 }
 
-.table .table-header{
+.table .table-header {
   display: flex;
 }
 .table th {
@@ -197,11 +197,11 @@
   font-weight: 700;
 }
 
-.table .table-body{
+.table .table-body {
   display: flex;
 }
 
-.table .table-body .table-div{
+.table .table-body .table-div {
   display: flex;
   width: 50%;
 }
@@ -218,8 +218,6 @@
   flex: 1;
 }
 
-
-
 .table td {
   background-color: #fff;
   border-bottom: 1px solid #d9d9d9;
@@ -232,7 +230,8 @@
 .health,
 .surgical,
 .genetic,
-.diagnosis {
+.diagnosis,
+.xray {
   position: relative;
   text-align: center;
   margin: var(--table-margin);
@@ -240,4 +239,29 @@
   border: var(--table-border);
   box-shadow: var(--table-shadow);
   width: 95%;
+}
+
+.xray .table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  padding: 15px;
+}
+
+.xray .table .xray-element {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: var(--table-shadow);
+}
+
+.xray .table .xray-element img{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.xray .table .xray-element span{
+  font-size: 22px;
+  color: var(--main-color);
 }

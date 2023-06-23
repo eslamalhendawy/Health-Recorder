@@ -46,6 +46,7 @@ function PatientCard(props) {
         localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
         localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
         localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+        localStorage.setItem("pXray", JSON.stringify(res.data.data.pationt.x_ray));
         setTimeout(() => {
           window.location.reload(true);
         }, 400);

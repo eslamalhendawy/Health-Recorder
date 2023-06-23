@@ -73,7 +73,7 @@ function DoctorLogin() {
               <Link className="clickable" to="/doctor-reg">
                 Create Account
               </Link>
-              <a>Forgot Password?</a>
+              <Link to="/doctor-password">Forgot Password?</Link>
             </div>
           </div>
         </div>
