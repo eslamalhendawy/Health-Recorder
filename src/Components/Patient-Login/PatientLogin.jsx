@@ -75,7 +75,7 @@ function PatientLogin() {
                 <i className={passwordIcon} onClick={changeType}></i>
                 <input type="submit" value="Log In" className="clickable login-button" onClick={submitHandler} />
               </form>
-              <Link className="clickable" to="/patient-reg/patient-reg1">
+              <Link className="clickable" to="/patient-reg1">
                 Create Account
               </Link>
               <Link to="/patient-password">Forgot Password?</Link>
