@@ -33,7 +33,6 @@ function PatientLogin() {
     await axios
       .post(url, { email, password })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
         localStorage.setItem("pLastName", res.data.data.pationt.lastName);
         localStorage.setItem("pEmail", res.data.data.pationt.email);

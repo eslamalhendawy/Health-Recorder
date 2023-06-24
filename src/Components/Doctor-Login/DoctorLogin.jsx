@@ -23,7 +23,6 @@ function DoctorLogin() {
     await axios
       .post(url, { email, password })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("userFirstName", res.data.data.doctor.firstName);
         localStorage.setItem("userLastName", res.data.data.doctor.lastName);
         localStorage.setItem("userEmail", res.data.data.doctor.email);
