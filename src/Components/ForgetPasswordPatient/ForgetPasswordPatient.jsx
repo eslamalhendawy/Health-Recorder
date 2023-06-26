@@ -7,6 +7,10 @@ function ForgetPasswordPatient() {
   const [email, setEmail] = useState("");
   const [National_ID, setID] = useState("");
   const url = "https://eslamsaber8-healthrecorder.onrender.com/api/v1/pationts/forget_pass";
+  const [errorMessage, setErrorMessage] = useState("");
+  const [circleState, setCircleState] = useState("forget-loading-circle");
+  const [value, setValue] = useState("Submit");
+  const [loadingStateF, setLoadingStateF] = useState("forget-button");
 
   useEffect(() => {
     document.title = "Health Recorder | Login";
@@ -14,6 +18,15 @@ function ForgetPasswordPatient() {
   }, []);
 
   async function submitHandler() {
+    setErrorMessage("");
+    if(email === ""){
+      setErrorMessage("Enter Email");
+    }else if(National_ID === ""){
+      setErrorMessage("Enter National ID");
+    }else {
+      setLoadingStateF("forget-button-clicked");
+      setValue("");
+      setCircleState("forget-loading-circle-active")
     await axios
       .post(url, { email, National_ID })
       .then((res) => {
@@ -40,7 +53,12 @@ function ForgetPasswordPatient() {
       })
       .catch((e) => {
         console.log(e);
+        setErrorMessage("Incorrect Email Or National ID");
+        setCircleState("forget-loading-circle");
+        setValue("Submit");
+        setLoadingStateF("forget-button");
       });
+    }
   }
   return (
     <div className="forgot-password">
@@ -50,7 +68,9 @@ function ForgetPasswordPatient() {
           <p>Enter The Following Data To Login And Change Your Password</p>
           <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
           <input type="text" placeholder="National ID" onChange={(e) => setID(e.target.value)} />
-          <button onClick={submitHandler}>Submit</button>
+          <span className="forget-error-message">{errorMessage}</span>
+          <span className={circleState}></span>
+          <button className={loadingStateF} onClick={submitHandler}>{value}</button>
         </div>
       </div>
     </div>
