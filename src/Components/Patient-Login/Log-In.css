@@ -59,6 +59,7 @@
 }
 
 .card .rhs form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,6 +96,7 @@
 .card .rhs form input[type="submit"] {
   color: white;
   background-color: #6da5c0;
+  width: 110px;
   padding: 8px 30px;
   border: none;
   font-size: 18px;
@@ -133,4 +135,41 @@ div.rhs form i.pass-eye {
 form input[type= "submit"].clickable.login-button:hover{
   background-color: #294d61;
   transition: 0.3s;
+}
+
+.card .rhs form input[type="submit"].clicked{
+  background-color: #294d61;
+}
+
+.loading-circle{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  border: 5px solid white;
+  border-radius: 50%;
+  border-right: 5px solid #294d61;
+  display: none;
+  animation: 1s loading infinite;
+}
+
+.loading-circle-active{
+  display: inline-block;
+}
+
+@keyframes loading {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.error-message{
+  color: red;
+  font-weight: 700;
+  font-size: 18px;
+  position: absolute;
+  bottom: 45px;
 }

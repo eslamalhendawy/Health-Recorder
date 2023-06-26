@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import loginImage from "../../Images/Log In/dr3.png";
@@ -17,9 +17,17 @@ function DoctorLogin() {
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState("fa-solid fa-eye pass-eye");
+  const [value, setValue] = useState("Log In");
+  const [loadingState, setLoadingState] = useState("loading-circle");
+  const [loginState, setLoginState] = useState("clickable login-button");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function submitHandler(e) {
     e.preventDefault();
+    setErrorMessage("");
+    setValue("");
+    setLoadingState("loading-circle loading-circle-active");
+    setLoginState("clickable login-button clicked");
     await axios
       .post(url, { email, password })
       .then((res) => {
@@ -39,6 +47,10 @@ function DoctorLogin() {
       })
       .catch((error) => {
         console.log(error);
+        setLoadingState("loading-circle");
+        setLoginState("clickable login-button");
+        setValue("Log In");
+        setErrorMessage("Incorrect Email Or Password");
       });
   }
 
@@ -67,7 +79,9 @@ function DoctorLogin() {
                 <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
                 <input onChange={(e) => setPassword(e.target.value)} type={passwordType} placeholder="Password" />
                 <i className={passwordIcon} onClick={changeType}></i>
-                <input type="submit" value="Log In" className="clickable login-button" onClick={submitHandler} />
+                <input type="submit" value={value} className={loginState} onClick={submitHandler} />
+                <span className={loadingState}></span>
+                <span className="error-message">{errorMessage}</span>
               </form>
               <Link className="clickable" to="/doctor-reg">
                 Create Account

@@ -121,7 +121,7 @@
   margin-left: auto;
 }
 
-.p1 .first-button:hover{
+.p1 .first-button:hover {
   background-color: #294d61;
   transition: 0.5s;
 }
@@ -197,6 +197,7 @@
 .controls {
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .next-button {
@@ -207,6 +208,7 @@
   border: none;
   border-radius: 30px;
   cursor: pointer;
+  width: 105px;
 }
 
 .next-button:hover {
@@ -337,7 +339,7 @@
   color: #294d61;
 }
 
-.bloodtype-select:focus{
+.bloodtype-select:focus {
   outline: none;
 }
 
@@ -351,15 +353,63 @@
   margin-bottom: 8px;
 }
 
-.p1-seventh-row{
+.p1-seventh-row {
   display: flex;
   justify-content: space-between;
   position: relative;
 }
 
-.p1-seventh-row span{
+.p1-seventh-row span {
   position: absolute;
   left: 275px;
   font-size: 18px;
   color: #d9534f;
+}
+
+.patient-loading-circle {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 5px;
+  right: 38px;
+  border: 5px solid white;
+  border-radius: 50%;
+  border-right: 5px solid #294d61;
+  display: none;
+  animation: 1s loading infinite;
+}
+
+.patient-loading-circle-active {
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 5px;
+  right: 38px;
+  border: 5px solid white;
+  border-radius: 50%;
+  border-right: 5px solid #294d61;
+  animation: 1s loading infinite;
+}
+
+.clicked-register {
+  background-color: #294d61;
+  padding: 10px 25px;
+  font-size: 15px;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 105px;
+}
+
+.patient-error-message {
+  color: red;
+  font-weight: 700;
+  font-size: 18px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  text-align: center;
 }

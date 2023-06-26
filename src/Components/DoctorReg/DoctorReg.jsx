@@ -28,6 +28,12 @@ function DoctorReg() {
   const [errorMessage, setErrorMessage] = useState("");
   const [initialType, setType1] = useState("password");
   const [initialClass, setClass1] = useState("fa-solid fa-eye pass-eye");
+  const [loadingState, setLoadingState] = useState("doctor-loading-circle");
+  const [loginState, setLoginState] = useState("doctor-submit-button");
+  const [value, setValue] = useState("Register")
+
+
+
   async function submitHandler() {
     if (firstName === "") {
       setErrorMessage("Enter First Name");
@@ -59,6 +65,9 @@ function DoctorReg() {
       setErrorMessage("Enter Age");
     } else {
       setErrorMessage("");
+      setLoginState("doctor-submit-button-active");
+      setValue("");
+      setLoadingState("doctor-loading-circle-active");
       await axios
         .post(url, { firstName, lastName, email, password, department, phoneNumber, address, age, gender})
         .then((res) => {
@@ -79,6 +88,10 @@ function DoctorReg() {
         })
         .catch((error) => {
           console.log(error);
+          setErrorMessage("Email And Phone Number Must Be Unique");
+          setLoginState("doctor-submit-button");
+          setValue("Register");
+          setLoadingState("doctor-loading-circle");
         });
     }
   }
@@ -151,9 +164,10 @@ function DoctorReg() {
                 <input value={age} type="number" onChange={(e) => setAge(e.target.value)} className="main-input" />
               </div>
               <div className="sixth-row">
-                <span>{errorMessage}</span>
-                <button className="doctor-submit-button" onClick={submitHandler}>
-                  Register
+                <span className="error-messge">{errorMessage}</span>
+                <span className={loadingState}></span>
+                <button className={loginState} onClick={submitHandler}>
+                  {value}
                 </button>
               </div>
             </div>

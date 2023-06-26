@@ -12,7 +12,7 @@ function DoctorModal() {
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef(null);
 
-  const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const regEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const doctorID = localStorage.getItem("doctorID");
   const dataURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/doctors/${doctorID}`;
   const imageURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/update_doc_picture/${doctorID}`;

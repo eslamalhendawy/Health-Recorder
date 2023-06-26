@@ -18,6 +18,10 @@ function PatientLogin() {
   const [password, setPassword] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [passwordIcon, setPasswordIcon] = useState("fa-solid fa-eye pass-eye");
+  const [value, setValue] = useState("Log In");
+  const [loadingState, setLoadingState] = useState("loading-circle");
+  const [loginState, setLoginState] = useState("clickable login-button");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const changeType = () => {
     if (passwordType === "password") {
@@ -30,6 +34,10 @@ function PatientLogin() {
   };
   async function submitHandler(e) {
     e.preventDefault();
+    setErrorMessage("");
+    setValue("");
+    setLoadingState("loading-circle loading-circle-active");
+    setLoginState("clickable login-button clicked");
     await axios
       .post(url, { email, password })
       .then((res) => {
@@ -44,7 +52,7 @@ function PatientLogin() {
         localStorage.setItem("pImage", res.data.data.pationt.image);
         localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
         localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
-        localStorage.setItem("pGenetic",JSON.stringify(res.data.data.pationt.Hereditary_diseases) );
+        localStorage.setItem("pGenetic", JSON.stringify(res.data.data.pationt.Hereditary_diseases));
         localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
         localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
         localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
@@ -56,6 +64,10 @@ function PatientLogin() {
       })
       .catch((error) => {
         console.log(error);
+        setLoadingState("loading-circle");
+        setLoginState("clickable login-button");
+        setValue("Log In");
+        setErrorMessage("Incorrect Email Or Password");
       });
   }
   return (
@@ -73,7 +85,9 @@ function PatientLogin() {
                 <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
                 <input onChange={(e) => setPassword(e.target.value)} type={passwordType} placeholder="Password" />
                 <i className={passwordIcon} onClick={changeType}></i>
-                <input type="submit" value="Log In" className="clickable login-button" onClick={submitHandler} />
+                <input type="submit" value={value} className={loginState} onClick={submitHandler} />
+                <span className={loadingState}></span>
+                <span className="error-message">{errorMessage}</span>
               </form>
               <Link className="clickable" to="/patient-reg1">
                 Create Account

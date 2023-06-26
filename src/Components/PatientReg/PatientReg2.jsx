@@ -43,7 +43,7 @@ function PatientReg2() {
     <div className="reg">
       <div className="container">
         <div className="regis-card p2">
-          <h2>Health Status</h2>
+          <h2>Health Status (Click Next To Skip This Page)</h2>
           <div className="page-body">
             <div className="p2-first-row">
               <div className="lhs">

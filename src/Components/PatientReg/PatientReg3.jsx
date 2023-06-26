@@ -24,6 +24,10 @@ function PatientReg3() {
   const [surgeryDate, setSurgeryDate] = useState("");
   const [genetic, setGenetic] = useState("");
   const [geneticMed, setGeneticMed] = useState("");
+  const [value, setValue] = useState("Register");
+  const [loadingState, setLoadingState] = useState("patient-loading-circle");
+  const [loginState, setLoginState] = useState("next-button");
+  const [errorMessage, setErrorMessage] = useState("");
 
   if (pSurgury === "no") {
     x = true;
@@ -54,8 +58,6 @@ function PatientReg3() {
     Surgical_operations: [{ name: surgery, date: surgeryDate }],
   };
 
-  
-
   async function submitHandler() {
     if (chronicDisease === "" || mChronicDisease === "") {
       delete newPatient.chronic_Diseases;
@@ -69,27 +71,41 @@ function PatientReg3() {
     if (surgery === "" || surgeryDate === "") {
       delete newPatient.Surgical_operations;
     }
-    await axios.post(url, newPatient).then((res) => {
-      console.log(res);
-      localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
-      localStorage.setItem("pLastName", res.data.data.pationt.lastName);
-      localStorage.setItem("pEmail", res.data.data.pationt.email);
-      localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
-      localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
-      localStorage.setItem("pAge", res.data.data.pationt.age);
-      localStorage.setItem("pGender", res.data.data.pationt.gender);
-      localStorage.setItem("pImage", res.data.data.pationt.image);
-      localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
-      localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
-      localStorage.setItem("pGenetic", JSON.stringify(res.data.data.pationt.Hereditary_diseases));
-      localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
-      localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
-      localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
-      setTimeout(() => {
-        window.location.reload(true);
-      }, 400);
-      navigate("/patient-page");
-    });
+    setValue("");
+    setLoadingState("patient-loading-circle-active");
+    setLoginState("clicked-register");
+    setErrorMessage("");
+
+    await axios
+      .post(url, newPatient)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("userFirstName", res.data.data.pationt.fristName);
+        localStorage.setItem("pLastName", res.data.data.pationt.lastName);
+        localStorage.setItem("pEmail", res.data.data.pationt.email);
+        localStorage.setItem("pBloodType", res.data.data.pationt.bloodType);
+        localStorage.setItem("pNationalID", res.data.data.pationt.National_ID);
+        localStorage.setItem("pAge", res.data.data.pationt.age);
+        localStorage.setItem("pGender", res.data.data.pationt.gender);
+        localStorage.setItem("pImage", res.data.data.pationt.image);
+        localStorage.setItem("pPhoneNumber", res.data.data.pationt.phoneNumber);
+        localStorage.setItem("pHealthProblems", JSON.stringify(res.data.data.pationt.Health_problems));
+        localStorage.setItem("pGenetic", JSON.stringify(res.data.data.pationt.Hereditary_diseases));
+        localStorage.setItem("pSurgery", JSON.stringify(res.data.data.pationt.Surgical_operations));
+        localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
+        localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 400);
+        navigate("/patient-page");
+      })
+      .catch((e) => {
+        console.log(e);
+        setErrorMessage("Email ,National ID And Phone Number Must Be Unique");
+        setLoadingState("patient-loading-circle");
+        setLoginState("next-button");
+        setValue("Register");
+      });
   }
 
   function goSecondPage() {
@@ -100,7 +116,7 @@ function PatientReg3() {
     <div className="reg">
       <div className="container">
         <div className="regis-card p3">
-          <h2>Surgical History</h2>
+          <h2>Surgical History (Click Register To Skip This Page)</h2>
           <div className="special-page-body">
             <div className="p3-first-row">
               <div className="lhs">
@@ -150,9 +166,11 @@ function PatientReg3() {
               <button onClick={goSecondPage} className="previous-button">
                 Previous
               </button>
-              <button onClick={submitHandler} className="next-button">
-                Register
+              <button onClick={submitHandler} className={loginState}>
+                {value}
               </button>
+              <span className={loadingState}></span>
+              <span className="patient-error-message">{errorMessage}</span>
             </div>
           </div>
         </div>
