@@ -4,6 +4,8 @@ import { useState, useRef } from "react";
 function GeneticModal() {
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState("");
+  const [descrption, setDescreption] = useState("");
+  const [date, setDate] = useState("");
   const inputRef = useRef(null);
   const clickHandler = () => {
     if (modal === true) {
@@ -20,6 +22,7 @@ function GeneticModal() {
 
   const patientID = localStorage.getItem("pNationalID");
   const url = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/updateX_ray/${patientID}`;
+  const desURL = `https://eslamsaber8-healthrecorder.onrender.com/api/v1/update/${patientID}`;
 
   const triggerFile = () => {
     inputRef.current.click();
@@ -28,9 +31,16 @@ function GeneticModal() {
   const [error, setError] = useState("");
 
   async function submitXray() {
-    if (image === "") {
+    if(descrption === ""){
+      setError("Enter Description")
+    }else if (date === ""){
+      setError("Enter Date");
+    }
+    else if (image === "") {
       setError("Select Image");
-    } else {
+    }else {
+      const newDes = [{descrption, date}];
+      await axios.patch(desURL,{orgnis_report : newDes }).then(res => console.log(res)).catch(e => console.log(e));
       const formData = new FormData();
       formData.append("x_ray", image);
       await axios
@@ -38,6 +48,7 @@ function GeneticModal() {
         .then((res) => {
           console.log(res);
           localStorage.setItem("pXray", JSON.stringify(res.data.data.pationt.x_ray));
+          localStorage.setItem("pXrayDescreption", JSON.stringify(res.data.data.pationt.orgnis_report));
           setTimeout(() => {
             window.location.reload(true);
           }, 400);
@@ -56,6 +67,16 @@ function GeneticModal() {
           <div onClick={clickHandler} className="overlay"></div>
           <div className="modal-content">
             <h2 className="modal-header">Enter New X-Ray Or Prescription</h2>
+            <div className="row second-row diagnosis-second-row">
+              <div className="lhs">
+                <span className="edit-span">Description :</span>
+                <input onChange={e => setDescreption(e.target.value)} className="main-input" type="text" />
+              </div>
+              <div className="rhs">
+                <span className="edit-span">Date :</span>
+                <input onChange={e => setDate(e.target.value)}  type="date" className="bloodtype-select" />
+              </div>
+            </div>
             <div className="row third-row">
               <div className="lhs">
                 <span className="edit-span">Choose Image:</span>

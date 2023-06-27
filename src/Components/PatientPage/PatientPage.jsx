@@ -14,7 +14,9 @@ function PatientPage() {
   const chronic = JSON.parse(localStorage.getItem("pChronic"));
   const healthProblems = JSON.parse(localStorage.getItem("pHealthProblems"));
   const xray = JSON.parse(localStorage.getItem("pXray"));
+  const xrayDes = JSON.parse(localStorage.getItem("pXrayDescreption"));
 
+  console.log(xrayDes);
   return (
     <div className="page">
       <div className="patient-sidebar">
@@ -182,12 +184,12 @@ function PatientPage() {
         <div className="xray">
           <h2 className="main-head">X-Rays And Prescriptions</h2>
           <div className="table">
-            {xray.map((data, index) => {
+            {xray.length === 0 ? <></> : xray.map((data, index) => {
               return (
               <div key={index} className="xray-element">
                 <img  src={data} alt="" />
-                <span>Hand Palms X-Ray</span>
-                <span>10/5/2020</span>
+                <span>{xrayDes[index].descrption}</span>
+                <span>{xrayDes[index].date}</span>
               </div>
               )
             })}

@@ -95,6 +95,7 @@ function PatientReg3() {
         localStorage.setItem("pChronic", JSON.stringify(res.data.data.pationt.chronic_Diseases));
         localStorage.setItem("pDiagonas", JSON.stringify(res.data.data.pationt.diagonas));
         localStorage.setItem("pXray", JSON.stringify(res.data.data.pationt.x_ray));
+        localStorage.setItem("pXrayDescreption", JSON.stringify(res.data.data.pationt.orgnis_report));
         setTimeout(() => {
           window.location.reload(true);
         }, 400);
