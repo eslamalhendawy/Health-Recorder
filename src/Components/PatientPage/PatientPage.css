@@ -256,12 +256,14 @@
   box-shadow: var(--table-shadow);
 }
 
-.xray .table .xray-element img{
+.xray .table .xray-element img {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  height: 300px;
+  width: 100%;
 }
 
-.xray .table .xray-element span{
+.xray .table .xray-element span {
   font-size: 22px;
   color: var(--main-color);
 }
