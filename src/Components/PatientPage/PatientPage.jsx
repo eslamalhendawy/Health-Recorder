@@ -16,7 +16,6 @@ function PatientPage() {
   const xray = JSON.parse(localStorage.getItem("pXray"));
   const xrayDes = JSON.parse(localStorage.getItem("pXrayDescreption"));
 
-  console.log(xrayDes);
   return (
     <div className="page">
       <div className="patient-sidebar">
@@ -36,25 +35,31 @@ function PatientPage() {
           <li>
             <a href="#health">
               <i className="fa-solid fa-heart"></i>
-              Health status
+              Health Status
             </a>
           </li>
           <li>
             <a href="#surgical">
               <i className="fa-solid fa-hospital"></i>
-              Surgical history
+              Surgical History
             </a>
           </li>
           <li>
             <a href="#genetic">
               <i className="fa-solid fa-square-virus"></i>
-              Genetic disease
+              Genetic Disease
             </a>
           </li>
           <li>
             <a href="#diagnosis">
               <i className="fa-solid fa-user-doctor"></i>
               Diagnosis
+            </a>
+          </li>
+          <li>
+            <a href="#xray">
+              <i className="fa-solid fa-x-ray"></i>
+              X-Rays And Prescriptions
             </a>
           </li>
         </ul>
@@ -181,7 +186,7 @@ function PatientPage() {
             </tbody>
           </table>
         </div>
-        <div className="xray">
+        <div className="xray" id="xray">
           <h2 className="main-head">X-Rays And Prescriptions</h2>
           <div className="table">
             {xray.length === 0 ? <></> : xray.map((data, index) => {

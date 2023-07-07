@@ -81,7 +81,7 @@ function PatientLogin() {
               <img src={loginImage} alt="Healh Care" />
             </div>
             <div className="rhs">
-              <h2>Welcome Back Patient!</h2>
+              <h2>Welcome Back!</h2>
               <p>Login To Your Account</p>
               <form>
                 <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />

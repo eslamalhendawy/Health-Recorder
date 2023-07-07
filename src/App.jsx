@@ -9,7 +9,7 @@ import DispatchContext from "./DispatchContext";
 import HomePage from "./Components/HomePage/HomePage";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
-import DoctorLogin from "./Components/Doctor-Login/doctorLogin";
+import DoctorLogin from "./Components/Doctor-Login/DoctorLogin";
 import PatientLogin from "./Components/Patient-Login/PatientLogin";
 import DoctorReg from "./Components/DoctorReg/DoctorReg";
 import PatientReg1 from "./Components/PatientReg/PatientReg1";
