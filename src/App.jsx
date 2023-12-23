@@ -1,25 +1,28 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useImmerReducer } from "use-immer";
+import { ToastContainer } from "react-toastify";
 
 //Contexts
 import StateContext from "./StateContext";
 import DispatchContext from "./DispatchContext";
 
 //Components
-import HomePage from "./Components/HomePage/HomePage";
-import Header from "./Components/Header/Header";
-import Footer from "./Components/Footer/Footer";
-import DoctorLogin from "./Components/Doctor-Login/DoctorLogin";
-import PatientLogin from "./Components/Patient-Login/PatientLogin";
-import DoctorReg from "./Components/DoctorReg/DoctorReg";
-import PatientReg1 from "./Components/PatientReg/PatientReg1";
-import PatientReg2 from "./Components/PatientReg/PatientReg2";
-import PatientReg3 from "./Components/PatientReg/PatientReg3";
-import DoctorPage from "./Components/DoctorPage/DoctorPage";
-import PatientPage from "./Components/PatientPage/PatientPage";
-import DoctorPatientEdit from "./Components/DoctorPatientEdit/DoctorPatientEdit";
-import ForgetPasswordDoctor from "./Components/ForgetPasswordDoctor/ForgetPasswordDoctor";
-import ForgetPasswordPatient from "./Components/ForgetPasswordPatient/ForgetPasswordPatient";
+import HomePage from "./Components/HomePage";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import DoctorLogin from "./Components/DoctorLogin";
+import PatientLogin from "./Components/PatientLogin";
+import DoctorReg from "./Components/DoctorReg";
+import PatientReg1 from "./Components/PatientReg1";
+import PatientReg2 from "./Components/PatientReg2";
+import PatientReg3 from "./Components/PatientReg3";
+import DoctorPage from "./Components/DoctorPage";
+import PatientPage from "./Components/PatientPage";
+import DoctorPatientEdit from "./Components/DoctorPatientEdit";
+import ForgetPasswordDoctor from "./Components/ForgetPasswordDoctor";
+import ForgetPasswordPatient from "./Components/ForgetPasswordPatient";
+
+import "./App.css"
 
 function App() {
   const initialState = {
@@ -82,6 +85,7 @@ function App() {
             <Route exact path="/patient-password" element={<ForgetPasswordPatient />} />
           </Routes>
           <Footer />
+          <ToastContainer autoClose={3000} theme="dark" newestOnTop={true} />
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>
