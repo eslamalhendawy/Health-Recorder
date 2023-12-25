@@ -100,7 +100,7 @@ function DoctorModal() {
       {modal && (
         <div className="modal">
           <div className="overlay" onClick={clickHandler}></div>
-          <div className="modal-content max-w-[500px] bg-white px-6 py-4 rounded-xl text-[#212529]">
+          <div className="modal-content max-w-[500px] bg-white px-6 py-4 rounded-xl text-[#212529] relative">
             <h2 className="mb-4 font-semibold sm:text-lg">Only Fill The Data You Wish To Change</h2>
             <div className="sm:flex gap-4 mb-4">
               <div className="mb-4 flex flex-col basis-2/4">
@@ -136,7 +136,7 @@ function DoctorModal() {
                 </button>
               </div>
             </div>
-            <i className="fa-solid fa-xmark close-modal" onClick={clickHandler}></i>
+            <i className="fa-solid fa-xmark absolute top-3 right-3 text-[#e93131] text-xl" onClick={clickHandler}></i>
           </div>
         </div>
       )}
